@@ -1,0 +1,119 @@
+doctype 5
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    title Snack Dashboard Help
+    
+    //jQuery
+    script(src="lib/jqueryui/jquery-1.8.3.min.js") 
+    
+    //bootstrap    
+    script(src="lib/bootstrap/js/bootstrap.min.js")  
+    link(rel='stylesheet', href='lib/bootstrap/css/bootstrap.css')      
+    link(rel='stylesheet', href='lib/bootstrap/css/bootstrap-responsive.css')      
+    link(rel='stylesheet', href='css/help.css')      
+
+  body
+    #wrap
+      .container.marketing
+        h1 About Snack Dashboard
+        p.marketing-byline What is this all about...
+          
+        #contentdiv.row-fluid
+          .span4.well
+            img.marketing-img(src="images/ohmage-logo.png", alt="logo")
+            p The snack dataset was collected by participating students from 
+              a(href="http://home.lausd.net/") LAUSD 
+              | in 2012. They used mobile phones with the 
+              a(href="http://www.ohmage.org") Ohmage software
+              | .
+             
+          .span4.well
+            img.marketing-img(src="images/mobilize-logo.png", alt="logo")
+            p The 
+              a(href="http://www.mobilizingcs.org/") Mobilize project 
+              | introduces concepts like learning from data, statistics and visualization in a playful and engaging way.
+
+          .span4.well
+            img.marketing-img(src="images/opencpu-logo.png", alt="logo") 
+            p The 
+              a(href="./") Dashboard 
+              | allows for visual exploration of the data without the need for advanced software. It is best viewed in Google Chrome.
+
+        iframe#snackvideo(src="//www.youtube.com/embed/9FrB2xu0ghY?enablejsapi=1&autoplay=0&rel=0&modestbranding=1&showinfo=0&showsearch=0")
+
+
+        hr.soften
+        .row-fluid            
+          .span4
+            h2 Snack Survey
+
+            #myCarousel.carousel.slide
+             .carousel-inner
+               .active.item
+                 img(src="images/survey1.png", alt="snack survey question")
+               .item
+                 img(src="images/survey2.png", alt="snack survey question")
+               .item
+                 img(src="images/survey3.png", alt="snack survey question")
+               .item
+                 img(src="images/survey4.png", alt="snack survey question")
+               .item
+                 img(src="images/survey5.png", alt="snack survey question")
+               .item
+                 img(src="images/survey6.png", alt="snack survey question")
+               .item
+                 img(src="images/survey7.png", alt="snack survey question")
+               .item
+                 img(src="images/survey8.png", alt="snack survey question")
+               .item
+                 img(src="images/survey9.png", alt="snack survey question")                                     
+             a.carousel-control.left(href='#myCarousel', data-slide='prev') ‹
+             a.carousel-control.right(href='#myCarousel', data-slide='next') ›
+
+          .span4#datatext 
+            h2 Pilot Data
+            p Participating students can view their live responses by loggin in the Ohmage system. There is also a public demo dataset available that was collected during the first pilot study. 
+                          
+            p During the first pilot study, approximately 2500 survey responses were uploaded. 
+              | For the public demo dataset, only complete responses (including photo and GPS location) were included, resulting in a dataset of approx 1700 records.
+              | Also, up to 1 mile of noise added to each GPS location that was recorded from the students home to ensure students privacy.
+              
+            p The raw dataset can be seen  
+              a(href="data/demo/snack.csv") here
+              |  in CSV format. Please do not reuse this data for other purposes without permission.
+              
+          .span4
+            h2 The Dashboard
+            p The interactive dashboard was developed to visually explore the data. There is both a live version that
+              | participating students can use to view each others data, as well as a public static version with a fixed dataset.
+              
+            p Some of the libraries that are used by the dashboard:  
+            ul
+              li
+                a(href="http://leafletjs.com/") Leaflet
+              li
+                a(href="http://d3js.org/") D3
+              li
+                a(href="http://www.jasondavies.com/wordcloud") D3-cloud
+              li
+                a(href="http://square.github.com/crossfilter/") Crossfilter
+              li
+                a(href="http://nickqizhu.github.com/dc.js/") dc.js
+              li
+                a(href="http://twitter.github.com/bootstrap/") Twitter Bootstrap
+              li
+                a(href="http://jqueryui.com/") jQuery{ui}  
+             
+             p For further questions about the dashboard, contact <a href="http://jeroenooms.github.com">the author</a>.                                                                             
+                              
+          
+      #push
+    #footer
+      .container
+        p.muted.credit
+          | Snack Dashboard by 
+          a(href='http://jeroenooms.github.com') Jeroen Ooms
+          |  as part of 
+          a(href='http://mobilizingcs.org') Mobilize Project
+          | .

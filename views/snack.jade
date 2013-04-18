@@ -1,0 +1,60 @@
+block content
+
+  div#buttonpanel
+    button#timeseriesbutton.btn.widgetbutton(data-toggle="button", data-panel="bottompanel") 
+      img(src="images/bars.png", alt="bar charts")
+    button#piechartbutton.btn.widgetbutton(data-toggle="button", data-panel="piepanel") 
+      img(src="images/piechart.png", alt="pie charts")  
+    button#histbutton.btn.widgetbutton(data-toggle="button", data-panel="histpanel") 
+      img(src="images/bars2.png", alt="health chart")           
+    button#wcbutton.btn.widgetbutton(data-toggle="button", data-panel="wcpanel") 
+      img(src="images/wc.png", alt="wordclouds") 
+    button#photobutton.btn.widgetbutton(data-toggle="button", data-panel="photopanel") 
+      img(src="images/camera.png", alt="thumbnails") 
+    button#helpbutton.btn.widgetbutton(data-toggle="button", data-panel="helppanel") 
+      img(src="images/help.png", alt="thumbnails")                
+
+  div#infodiv    
+            
+  div#widgets
+  
+  div#loadinganimation
+    img(src="images/loading1.gif", alt="loading")  
+
+
+  div#choosecampaign.well.hide
+    h3 Select a campaign
+    ul#campaignlist.nav.nav-pills.nav-stacked
+  
+  div#map
+  
+  div#photopanel.well.chartpanel
+    div#imagelist
+    a#prevthumbs.hide.left.carousel-control(href='#') ‹
+    a#nextthumbs.hide.right.carousel-control(href='#') ›    
+    
+  div#responsemodal.modal.hide.fade
+    .modal-header
+      button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+      h3 Snacking Entry
+    .modal-body
+      div#modalphoto
+        img#resphoto.img-rounded(src="images/nophoto.jpg", alt="modal photo")
+        a#nextitem.left.carousel-control(href='#') ‹
+        a#previtem.right.carousel-control(href='#') ›
+      
+    .modal-footer
+      table#responsetable.table.table-condensed
+        thead
+          tr
+            th Question
+            th Response
+        tbody
+      
+  div#wcpanel.chartpanel
+    
+  div#bottompanel.chartpanel  
+          
+  div#piepanel.well.chartpanel
+        
+  div#histpanel.chartpanel

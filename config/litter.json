@@ -1,0 +1,166 @@
+{
+	"title" : "Litter Dashboard",
+	"name" : "litter",
+	"data" : {
+		"demo" : false,
+		"ohmage" : true
+	},
+	"item_main" : "Littertype:label",	
+	"columns" : [
+		"urn:ohmage:context:timestamp",
+		"urn:ohmage:prompt:response",
+		"urn:ohmage:context:location:latitude",
+		"urn:ohmage:context:location:longitude"	
+	],
+	"photo" : {
+		"item" : "LitterImage",
+		"thumb" : "/app/image/read?client=dashboard&size=icon&id={{ LitterImage }}",
+		"image" : "/app/image/read?client=dashboard&id={{ LitterImage }}"	
+	},	
+	"modal": [ 
+		{
+			"title" : "What?",
+			"item" : "ObservationType:label"
+		},
+		{
+			"title" : "Gender?",
+			"item" : "Gender:label"
+		},
+		{
+			"title" : "Who?",
+			"item" : "WhoIsLittering:label"
+		},
+		{
+			"title" : "Litter type?",
+			"item" : "Littertype:label"
+		},
+		{
+			"title" : "Quantity?",
+			"item" : "LitterQuantity"
+		},
+		{
+			"title" : "Where?",
+			"item" : "Where:label"
+		},
+		{
+			"title" : "Receptacle nearby?",
+			"item" : "TrashReceptacle:label"
+		},		
+		{
+			"title" : "Receptacle full?",
+			"item" : "IsItFull:label"
+		},			
+		{
+			"title" : "Feeling?",
+			"item" : "FeelingLitter"
+		}	
+	],
+	"datecharts" : [
+		{
+			"title" : "Response Date",
+			"item" : "context:timestamp"
+		}	
+	],
+	"hourcharts" : [
+		{
+			"title" : "Response Time",
+			"item" : "context:timestamp"
+		}	
+	],
+	"piecharts" : [
+		{
+			"title" : "Observation",
+			"item" : "ObservationType:label",
+			"label" : {
+   			   	"Litter" : "litter",
+    		  	"Someone littering" : "person"
+			}
+		},
+		{
+			"title" : "Who",
+			"item" : "WhoIsLittering:label"
+		},
+		{
+			"title" : "Littertype",
+			"item" : "Littertype:label",
+			"label" : {
+   			   	"Food from cafeteria" : "cafeteria",
+    		  	"Paper products associated to food" : "paper",
+    		  	"Bio-hazard Materials" : "bio-hazard",
+    		  	"Recyclables" : "recyclables"
+			}
+		},
+		{
+			"title" : "Where",
+			"item" : "Where:label"
+		},	
+		{
+			"title" : "Receptacle",
+			"item" : "TrashReceptacle:label"
+		},
+		{
+			"title" : "Receptacle Full?",
+			"item" : "IsItFull:label"		
+		}			
+	],
+	"barcharts" : [
+		{
+			"title" : "Quantity",
+			"item" : "LitterQuantity",
+			"domain" : [0,3]
+		}
+	], 
+	"wordclouds" : [
+		{
+			"title" : "Feeling",
+			"item" : "FeelingLitter"
+		}
+	],
+	"maps" : [
+		{
+			"item" : {
+				"lat" : "context:location:latitude", 
+				"lng" : "context:location:longitude",
+				"geo" : "neighborhood"
+			},
+			"center" : [34.0522222, -118.2427778],
+			"zoom" : 9,
+			"clusteroptions" : {
+				"spiderfyOnMaxZoom": true,
+				"showCoverageOnHover": true,
+				"zoomToBoundsOnClick": true
+			},
+			"geojson" : {
+				"item" : "neighborhood",
+				"url" : "data/geojson/la_county_simplified.min.json"
+			},
+			"tilelayers": [
+				{
+					"title" : "Standard",
+					"url" : "http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/1/256/{z}/{x}/{y}.png"
+				},
+				{
+					"title" : "Road", 
+					"url" : "http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/997/256/{z}/{x}/{y}.png"
+				},
+				{
+					"title" : "Grayish",
+					"url" : "http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/22677/256/{z}/{x}/{y}.png",
+					"default" : true
+				},
+				{
+					"title" : "Quiet",
+					"url" : "http://{s}.latimes.com.s3.amazonaws.com/quiet-la-0.2.3/{z}/{x}/{y}.png",
+					"mapoptions" : {
+						"subdomains" : [
+							"tiles1",
+				 			"tiles2",
+				 			"tiles3",
+				 			"tiles4"
+						]
+					}
+				}			
+			] 
+		}
+	]
+}

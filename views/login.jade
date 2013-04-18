@@ -1,0 +1,40 @@
+doctype 5
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    title Ohmage Authentication
+    
+    //jQuery
+    script(src="lib/jqueryui/jquery-1.8.3.min.js") 
+    
+    //jquery graceful placeholder plugin
+    script(src="lib/jqueryui/jquery.placeholder.min.js")       
+    
+    //bootstrap    
+    script(src="lib/bootstrap/js/bootstrap.min.js")  
+    link(rel='stylesheet', href='lib/bootstrap/css/bootstrap.min.css')      
+    
+    //application   
+    script(src="js/login.js")     
+    script(src="js/ohmage.js")     
+    link(rel='stylesheet', href='css/login.css')   
+
+  body
+    div#logindiv
+      form#loginform.well.form-inline
+        img#logo(src="images/ohmage-logo.png", alt="logo")
+        
+        fieldset
+          div.control-group
+            div.controls
+              input#user.input-xlarge(placeholder="user", name="user", type="text")
+              
+    
+          div.row
+            div.control-group.span3
+              div.controls
+                input#password.input-xlarge(placeholder="password", name="password", type="password")
+            div.span1
+              button#loginbutton.btn.btn-info Login
+            
+        

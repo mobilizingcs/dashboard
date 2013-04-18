@@ -1,0 +1,12 @@
+SSLProxyEngine on
+
+<Location /app/>
+ProxyPass https://lausd.mobilizingcs.org/app/
+</Location>
+
+## Apps
+
+#<Location />
+#ProxyPass https://lausd.mobilizingcs.org/
+#</Location>
+

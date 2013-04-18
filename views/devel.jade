@@ -1,0 +1,71 @@
+doctype 5
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    title Dashboard
+
+    //underscore.js
+    script(src="lib/underscore/underscore.js")
+    
+    //mustache.js 
+    script(src="lib/mustache/mustache.js") 
+
+    //jquery + ui
+    script(src="lib/jqueryui/jquery-1.8.3.js")   
+    script(src="lib/jqueryui/jquery-ui-1.9.2.custom.js")    
+    link(rel='stylesheet', href='lib/jqueryui/jquery-ui-1.9.2.custom.css')    
+
+    //bootstrap    
+    script(src="lib/bootstrap/js/bootstrap.js")  
+    link(rel='stylesheet', href='lib/bootstrap/css/bootstrap.css')     
+
+    //leaflet
+    script(src="lib/leaflet/leaflet-src.js")
+    link(rel='stylesheet', href='lib/leaflet/leaflet.css')
+    //if lt IE 8
+      link(rel='stylesheet', href='lib/leaflet/leaflet.ie.css')   
+       
+    //leaflet markercluster 
+    script(src="lib/leaflet-markercluster/leaflet.markercluster-src.js")   
+    link(rel='stylesheet', href='lib/leaflet-markercluster/MarkerCluster.css')
+    link(rel='stylesheet', href='lib/leaflet-markercluster/MarkerCluster.Default.css')
+    //if lt IE 8
+      link(rel='stylesheet', href='lib/leaflet-markercluster/MarkerCluster.Default.ie.css')
+
+    //d3, crossfiler, dc    
+    script(src="lib/dc/d3.v2.js")
+    script(src="lib/dc/crossfilter.js")
+    script(src="lib/dc/dc.js")  
+    link(rel='stylesheet', href='lib/dc/dc.css') 
+    
+    //wordcloud library
+    script(src="lib/d3-cloud/d3.layout.cloud.js")
+
+    //hashing
+    script(src="lib/hashing/murmurhash3_gc.js")
+    
+    //data
+    //script(src="http://jeroenooms.github.io/lausd-data/geojson/la_county.json") 
+    script(src="http://jeroenooms.github.io/lausd-data/geojson/la_county_simplified.json") 
+
+    //application   
+    script(src="js/snackboard.js")
+    script(src="js/debug.js")
+    script(src="js/loaddata.js")
+    script(src="js/charts.js")
+    script(src="js/ohmage.js")
+    script(src="js/map.js")
+    script(src="js/photopanel.js")
+    script(src="js/piechart.js")
+    script(src="js/barchart.js")
+    script(src="js/datechart.js")
+    script(src="js/hourchart.js")
+    script(src="js/wordcloud.js")
+    script(src="js/responsemodal.js")
+    script(src="js/filtercount.js")
+    script(src="js/help.js")
+           
+    link(rel='stylesheet', href='css/snack.css')   
+
+  body
+    include snack

@@ -1,0 +1,159 @@
+{
+	"title" : "Algebra Dashboard",
+	"name" : "algebra1",
+	"data" : {
+		"demo" : false,
+		"ohmage" : true
+	},
+	"item_main" : "nameofSnack",	
+	"columns" : [
+		"urn:ohmage:context:timestamp",
+		"urn:ohmage:prompt:response",
+		"urn:ohmage:context:location:latitude",
+		"urn:ohmage:context:location:longitude"	
+	],
+	"photo" : {
+		"item" : "SnackImage",
+		"thumb" : "/app/image/read?client=dashboard&size=icon&id={{ SnackImage }}",
+		"image" : "/app/image/read?client=dashboard&id={{ SnackImage }}"		
+	},	
+	"modal": [ 
+		{
+			"title" : "Name?",
+			"item" : "nameofSnack"
+		},
+		{
+			"title" : "Salty or Sweet?",
+			"item" : "saltyorsweet:label"
+		},
+		{
+			"title" : "Healthy?",
+			"item" : "healthyLevel"
+		},
+		{
+			"title" : "Serving Size?",
+			"item" : "servingSize"
+		},
+		{
+			"title" : "How many Servings?",
+			"item" : "howmanyServings"
+		},
+		{
+			"title" : "Calories per Serving??",
+			"item" : "factsCalories"
+		},
+		{
+			"title" : "Total Fat (gr/srv)?",
+			"item" : "factsTotalFat"
+		},		
+		{
+			"title" : "Sodium (mg/srv)?",
+			"item" : "factsSodium"
+		},
+		{
+			"title" : "Carbohydrates (gr/srv)?",
+			"item" : "factsTotalCarb"
+		},
+		{
+			"title" : "Sugar (gr/srv)?",
+			"item" : "factsSugars"
+		},
+		{
+			"title" : "Ingredients?",
+			"item" : "ingredients"
+		}				
+	],
+	"datecharts" : [
+		{
+			"title" : "Response Date",
+			"item" : "context:timestamp"
+		}	
+	],
+	"hourcharts" : [
+		{
+			"title" : "Response Time",
+			"item" : "context:timestamp"
+		}	
+	],
+	"piecharts" : [
+		{
+			"title" : "Salty or Sweet",
+			"item" : "saltyorsweet:label"
+		}		
+	],
+	"barcharts" : [
+		{
+			"title" : "Calories",
+			"item" : "factsCalories"
+		},	
+		{
+			"title" : "Sodium",
+			"item" : "factsSodium"
+		},
+		{
+			"title" : "Total Fat",
+			"item" : "factsTotalFat"
+		},
+		{
+			"title" : "Sugar",
+			"item" : "factsSugars"
+		},						
+		{
+			"title" : "Carbohydrates",
+			"item" : "factsTotalCarb"
+		}		
+	], 
+	"wordclouds" : [
+		{
+			"title" : "Ingredients",
+			"item" : "ingredients"
+		}
+	],
+	"maps" : [
+		{
+			"item" : {
+				"lat" : "context:location:latitude", 
+				"lng" : "context:location:longitude",
+				"geo" : "neighborhood"
+			},
+			"center" : [34.0522222, -118.2427778],
+			"zoom" : 9,
+			"clusteroptions" : {
+				"spiderfyOnMaxZoom": true,
+				"showCoverageOnHover": true,
+				"zoomToBoundsOnClick": true
+			},
+			"geojson" : {
+				"item" : "neighborhood",
+				"url" : "data/geojson/la_county_simplified.min.json"
+			},
+			"tilelayers": [
+				{
+					"title" : "Standard",
+					"url" : "http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/1/256/{z}/{x}/{y}.png"
+				},
+				{
+					"title" : "Road", 
+					"url" : "http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/997/256/{z}/{x}/{y}.png"
+				},
+				{
+					"title" : "Grayish",
+					"url" : "http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/22677/256/{z}/{x}/{y}.png",
+					"default" : true
+				},
+				{
+					"title" : "Quiet",
+					"url" : "http://{s}.latimes.com.s3.amazonaws.com/quiet-la-0.2.3/{z}/{x}/{y}.png",
+					"mapoptions" : {
+						"subdomains" : [
+							"tiles1",
+				 			"tiles2",
+				 			"tiles3",
+				 			"tiles4"
+						]
+					}
+				}			
+			] 
+		}
+	]
+}

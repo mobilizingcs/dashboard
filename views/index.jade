@@ -1,0 +1,57 @@
+doctype 5
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    title Dashboard
+    
+    //underscore.js
+    script(src="lib/underscore/underscore-min.js")    
+    
+    //mustache.js 
+    script(src="lib/mustache/mustache.js")      
+
+    //jquery + ui
+    script(src="lib/jqueryui/jquery-1.8.3.min.js")   
+    script(src="lib/jqueryui/jquery-ui-1.9.2.custom.min.js")    
+    link(rel='stylesheet', href='lib/jqueryui/jquery-ui-1.9.2.custom.min.css')    
+
+    //bootstrap    
+    script(src="lib/bootstrap/js/bootstrap.min.js")  
+    link(rel='stylesheet', href='lib/bootstrap/css/bootstrap.min.css')     
+
+    //leaflet
+    script(src="lib/leaflet/leaflet.js")
+    link(rel='stylesheet', href='lib/leaflet/leaflet.css')
+    //if lt IE 8
+      link(rel='stylesheet', href='lib/leaflet/leaflet.ie.css')   
+       
+    //leaflet markercluster 
+    script(src="lib/leaflet-markercluster/leaflet.markercluster.js")   
+    link(rel='stylesheet', href='lib/leaflet-markercluster/MarkerCluster.css')
+    link(rel='stylesheet', href='lib/leaflet-markercluster/MarkerCluster.Default.css')
+    //if lt IE 8
+      link(rel='stylesheet', href='lib/leaflet-markercluster/MarkerCluster.Default.ie.css')
+
+    //d3, crossfiler, dc    
+    script(src="lib/dc/d3.v2.min.js")
+    script(src="lib/dc/crossfilter.min.js")
+    script(src="lib/dc/dc.min.js")  
+    link(rel='stylesheet', href='lib/dc/dc.css') 
+    
+    //wordcloud library
+    script(src="lib/d3-cloud/d3.layout.cloud.min.js")
+
+    //hashing
+    script(src="lib/hashing/murmurhash3_gc.js")
+    
+    //data
+    //script(src="http://jeroenooms.github.io/lausd-data/geojson/la_county.json") 
+    script(src="http://jeroenooms.github.io/lausd-data/geojson/la_county_simplified.min.json") 
+
+    //application   
+    script(src="js/snack.min.js")
+           
+    link(rel='stylesheet', href='css/snack.css')   
+
+  body
+    include snack

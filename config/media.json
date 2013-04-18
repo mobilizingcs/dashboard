@@ -1,0 +1,152 @@
+{
+	"title" : "Advertisement Dashboard",
+	"name" : "advertisement",
+	"data" : {
+		"demo" : true,
+		"ohmage" : true
+	},
+	"item_main" : "Product",		
+	"columns" : [
+		"urn:ohmage:context:timestamp",
+		"urn:ohmage:prompt:response",
+		"urn:ohmage:context:location:latitude",
+		"urn:ohmage:context:location:longitude"	
+	],
+	"photo" : {
+		"item" : "AdPhoto",
+		"thumb" : "/app/image/read?client=dashboard&size=icon&id={{ AdPhoto }}",
+		"image" : "/app/image/read?client=dashboard&id={{ AdPhoto }}"	
+	},	
+	"modal": [ 
+		{
+			"title" : "Product?",
+			"item" : "Product"
+		},
+		{
+			"title" : "Advertisement type?",
+			"item" : "AdvertisementType:label"
+		},
+		{
+			"title" : "Product Type?",
+			"item" : "ProductType:label"
+		},
+		{
+			"title" : "Target Audience?",
+			"item" : "TargetAudience"
+		},
+		{
+			"title" : "How much do you want it? (1-5)",
+			"item" : "DesiredLevel"
+		},
+		{
+			"title" : "How does it make you feel?",
+			"item" : "Feeling"
+		}	
+	],
+	"datecharts" : [
+		{
+			"title" : "Response Date",
+			"item" : "context:timestamp"
+		}	
+	],
+	"hourcharts" : [
+		{
+			"title" : "Response Time",
+			"item" : "context:timestamp"
+		}	
+	],
+	"piecharts" : [
+		{
+			"title" : "Advertisement Type",
+			"item" : "AdvertisementType:label",
+			"label" : {
+   			   	"Digital Display" : "Digital"
+			}
+		},
+		{
+			"title" : "Product Type",
+			"item" : "ProductType:label",
+			"label" : {
+				"Food and drinks" : "Food",
+				"Electronics and apps" : "Electronics"
+			}
+		}
+	],
+	"barcharts" : [
+		{
+			"title" : "Desired",
+			"item" : "DesiredLevel",
+			"domain" : [1,5]
+		}
+	], 
+	"wordclouds" : [
+		{
+			"title" : "Product",
+			"item" : "Product",
+			"resizable" : false,
+			"maxwords" : 50,
+			"height" : 200
+		},
+		{
+			"title" : "Audience",
+			"item" : "TargetAudience",
+			"resizable" : false,
+			"maxwords" : 50,
+			"height" : 200		
+		},
+		{
+			"title" : "Feeling",
+			"item" : "Feeling",
+			"resizable" : false,
+			"maxwords" : 50,
+			"height" : 200	
+		}
+	],
+	"maps" : [
+		{
+			"item" : {
+				"lat" : "context:location:latitude", 
+				"lng" : "context:location:longitude",
+				"geo" : "neighborhood"
+			},
+			"center" : [34.0522222, -118.2427778],
+			"zoom" : 9,
+			"clusteroptions" : {
+				"spiderfyOnMaxZoom": true,
+				"showCoverageOnHover": true,
+				"zoomToBoundsOnClick": true
+			},
+			"geojson" : {
+				"item" : "neighborhood",
+				"url" : "data/geojson/la_county_simplified.min.json"
+			},
+			"tilelayers": [
+				{
+					"title" : "Standard",
+					"url" : "http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/1/256/{z}/{x}/{y}.png"
+				},
+				{
+					"title" : "Road", 
+					"url" : "http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/997/256/{z}/{x}/{y}.png"
+				},
+				{
+					"title" : "Grayish",
+					"url" : "http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/22677/256/{z}/{x}/{y}.png",
+					"default" : true
+				},
+				{
+					"title" : "Quiet",
+					"url" : "http://{s}.latimes.com.s3.amazonaws.com/quiet-la-0.2.3/{z}/{x}/{y}.png",
+					"mapoptions" : {
+						"subdomains" : [
+							"tiles1",
+				 			"tiles2",
+				 			"tiles3",
+				 			"tiles4"
+						]
+					}
+				}			
+			] 
+		}
+	]
+}

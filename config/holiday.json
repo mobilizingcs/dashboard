@@ -1,0 +1,156 @@
+{
+	"title" : "Holiday Decoration",
+	"name" : "holidays",
+	"data" : {
+		"demo" : false,
+		"ohmage" : true
+	},
+	"item_main" : "Description",		
+	"columns" : [
+		"urn:ohmage:context:timestamp",
+		"urn:ohmage:prompt:response",
+		"urn:ohmage:context:location:latitude",
+		"urn:ohmage:context:location:longitude"	
+	],
+	"photo" : {
+		"item" : "DecorationImage",
+		"thumb" : "/app/image/read?client=dashboard&size=icon&id={{ DecorationImage }}",
+		"image" : "/app/image/read?client=dashboard&id={{ DecorationImage }}"
+	},	
+	"modal": [ 
+		{
+			"title" : "Holiday",
+			"item" : "Holiday:label"
+		},
+		{
+			"title" : "Neighborhood",
+			"item" : "Neighborhood:label"
+		},
+		{
+			"title" : "Address",
+			"item" : "Address"
+		},
+		{
+			"title" : "UnitType",
+			"item" : "UnitType:label"
+		},
+		{
+			"title" : "NumberOfUnits",
+			"item" : "NumberOfUnits"
+		},
+		{
+			"title" : "UnitNumber",
+			"item" : "UnitNumber"
+		},
+		{
+			"title" : "NumberOfDecorations",
+			"item" : "NumberOfDecorations"
+		},
+		{
+			"title" : "Description",
+			"item" : "Description"
+		}
+	],
+	"datecharts" : [
+		{
+			"title" : "Response Date",
+			"item" : "context:timestamp"
+		}	
+	],
+	"hourcharts" : [
+		{
+			"title" : "Response Time",
+			"item" : "context:timestamp"
+		}	
+	],
+	"piecharts" : [
+		{
+			"title" : "Holiday",
+			"item" : "Holiday:label",
+			"label": {
+				"Accion de Gracias/Thanksgiving" : "Thanksgiving",
+				"Navidad/Christmas" : "Christmas"
+			}
+		},
+		{
+			"title" : "Neighborhood",
+			"item" : "Neighborhood:label",
+			"label": {
+				"Pico y Magnolia" : "Pico / Magnolia",
+				"Vecindario Politi" : "V. Politi"
+			}
+		},		
+		{
+			"title" : "Unit Type",
+			"item" : "UnitType:label",
+			"label": {
+				"Una unidad/Single unit" : "Single",
+				"Unidades múltiples/Multiple units" : "Multiple"
+			}
+		}
+	],
+	"barcharts" : [
+		{
+			"title" : "Number of Decorations",
+			"item" : "NumberOfDecorations",
+			"domain" : [0,4]
+		}
+	], 
+	"wordclouds" : [
+		{
+			"title" : "Description",
+			"item" : "Description"
+		},
+		{
+			"title" : "Address",
+			"item" : "Address"		
+		}
+	],
+	"maps" : [
+		{
+			"item" : {
+				"lat" : "context:location:latitude", 
+				"lng" : "context:location:longitude",
+				"geo" : "neighborhood"
+			},
+			"center" : [34.0522222, -118.2427778],
+			"zoom" : 9,
+			"clusteroptions" : {
+				"spiderfyOnMaxZoom": true,
+				"showCoverageOnHover": true,
+				"zoomToBoundsOnClick": true
+			},
+			"geojson" : {
+				"item" : "neighborhood",
+				"url" : "data/geojson/la_county_simplified.min.json"
+			},
+			"tilelayers": [
+				{
+					"title" : "Standard",
+					"url" : "http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/1/256/{z}/{x}/{y}.png"
+				},
+				{
+					"title" : "Road", 
+					"url" : "http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/997/256/{z}/{x}/{y}.png"
+				},
+				{
+					"title" : "Grayish",
+					"url" : "http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/22677/256/{z}/{x}/{y}.png",
+					"default" : true
+				},
+				{
+					"title" : "Quiet",
+					"url" : "http://{s}.latimes.com.s3.amazonaws.com/quiet-la-0.2.3/{z}/{x}/{y}.png",
+					"mapoptions" : {
+						"subdomains" : [
+							"tiles1",
+				 			"tiles2",
+				 			"tiles3",
+				 			"tiles4"
+						]
+					}
+				}			
+			] 
+		}
+	]
+}
