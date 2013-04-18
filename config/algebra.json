@@ -2,16 +2,10 @@
 	"title" : "Algebra Dashboard",
 	"name" : "algebra1",
 	"data" : {
-		"demo" : false,
-		"ohmage" : true
+		"filter" : "algebra1",
+		"url" : "{{ oh.getcsvurl }}"			
 	},
 	"item_main" : "nameofSnack",	
-	"columns" : [
-		"urn:ohmage:context:timestamp",
-		"urn:ohmage:prompt:response",
-		"urn:ohmage:context:location:latitude",
-		"urn:ohmage:context:location:longitude"	
-	],
 	"photo" : {
 		"item" : "SnackImage",
 		"thumb" : "/app/image/read?client=dashboard&size=icon&id={{ SnackImage }}",

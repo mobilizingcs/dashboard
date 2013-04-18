@@ -2,22 +2,10 @@
 	"title" : "Snack Dashboard",
 	"name" : "snack",
 	"data" : {
-		"demo" : true,
-		"ohmage" : true
+		"filter" : "snack",
+		"url" : "{{ oh.getcsvurl }}"		
 	},
-	"sources" : [
-		{
-			"name" : "snack",
-			"data" : "{{ oh.getcsvurl }}"
-		}		
-	],
 	"item_main" : "WhatSnack",	
-	"columns" : [
-		"urn:ohmage:context:timestamp",
-		"urn:ohmage:prompt:response",
-		"urn:ohmage:context:location:latitude",
-		"urn:ohmage:context:location:longitude"	
-	],
 	"photo" : {
 		"item" : "SnackImage",
 		"thumb" : "/app/image/read?client=dashboard&size=icon&id={{ SnackImage }}",

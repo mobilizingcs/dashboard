@@ -2,16 +2,10 @@
 	"title" : "Advertisement Dashboard",
 	"name" : "advertisement",
 	"data" : {
-		"demo" : true,
-		"ohmage" : true
+		"filter" : "advertisement",
+		"url" : "{{ oh.getcsvurl }}"			
 	},
 	"item_main" : "Product",		
-	"columns" : [
-		"urn:ohmage:context:timestamp",
-		"urn:ohmage:prompt:response",
-		"urn:ohmage:context:location:latitude",
-		"urn:ohmage:context:location:longitude"	
-	],
 	"photo" : {
 		"item" : "AdPhoto",
 		"thumb" : "/app/image/read?client=dashboard&size=icon&id={{ AdPhoto }}",

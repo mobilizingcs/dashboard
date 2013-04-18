@@ -103,8 +103,8 @@ oh.utils.readconfig = function(next){
 	});
 }
 
-oh.start = function(){
-	oh.utils.readconfig(oh.init);
+oh.utils.error = function(msg){
+	throw new Error(msg)
 }
 
 oh.call = function(path, data, datafun){
@@ -176,17 +176,6 @@ oh.sendtologin = function(){
 	window.location = "../web/#login"
 }
 
-oh.sendtologin_old = function(){
-	var next = "login.html"
-	if(location.hash) {
-		next = next + "?state=" +  location.hash.substring(1);
-	}
-	if(location.pathname){
-		next = next + "?next=" + location.pathname;
-	}
-	window.location = next;
-}
-
 oh.campaign_read = function(cb){
 	var req = oh.call("/campaign/read", {
 		output_format : "short"
@@ -198,78 +187,20 @@ oh.campaign_read = function(cb){
 	return req;
 };
 
-oh.init = function(){
-	if(!dashboard.config.data.ohmage || /github.com|jeroenooms.com/.test(window.location.hostname) || oh.utils.state()[0] == "demo"){
-		$("#loadinganimation").show();
-		oh.initdemo();
-	} else {
-		oh.showlist();
-	}
-}
 
-oh.showlist = function(){	
-	oh.campaign_read(function(campaigns){
-		var pattern = new RegExp(dashboard.config["name"], "i");
-		var snackcampaigns = [];
-		campaigns.forEach(function(o){
-			if(pattern.test(o)){
-				snackcampaigns.push(o);
-				$("#campaignlist").append('<li><a target="_blank" href="#' + o + '">' + o + '</a></li>');
-			}
-		});
-		
-		if(dashboard.config.data.demo){
-			$("#campaignlist").append('<li><a target="_blank" href="#demo">Demo campaign</a></li>');
-		}
-		
-		if($.inArray(oh.utils.state()[0], snackcampaigns) > -1){
-			//the hashtag matches a campaign
-			dashboard.campaign_urn = oh.utils.state()[0];
-			oh.snackread(dashboard.campaign_urn);				
-		} else {
-			//show a campaign picker menu
-			$("#loadinganimation").hide();
-			$("#choosecampaign").show();
-			window.location.hash = "";
-		};
-		oh.keepactive();
-	});
-};
-
-oh.initdemo = function(max){
-	var myrequest = $.ajax({
-		type: "GET",
-		url : dashboard.config.sources[0].url
-	});
-	
-	myrequest.error(function(){
-		alert("Failed to download demo data.")
-	});	
-
-	myrequest.done(function(rsptxt) {
-		dashboard.campaign_urn = "demo"
-		oh.parsecsv(rsptxt, max)
-	});	
-}
-
-oh.parsecsv = function(string, max){
+oh.utils.parsecsv = function(string){
 	//dependency on d3!
 	var rows = d3.csv.parse(string);
 	
-	//get head of data
-	if(max) {
-		rows = oh.utils.getRandomSubarray(rows, max);
-	}
-
 	//parse rows
 	var records = [];
 	rows.forEach(function(d, i) {
 		//temp hack for the csv bug
-		if(! d["Holiday:label"] && /Halloween|Christmas/i.test(d["Holiday:label"])) {
-			console.log("skipping invalid record")
-			console.log(d)
-			return;
-		}
+//		if(! d["Holiday:label"] && /Halloween|Christmas/i.test(d["Holiday:label"])) {
+//			dashboard.message("skipping invalid record")
+//			dashboard.message(d)
+//			return;
+//		}
 			
 		//don't skip ND/SKP records for now. NA support in crossfilter is really bad.
 		if(d[dashboard.config.item_main] == "NOT_DISPLAYED") return;
@@ -280,41 +211,6 @@ oh.parsecsv = function(string, max){
 	
 	//load into gui
 	loaddata(records)
-}
-
-oh.snackread = function(campaign_arg){
-
-	var myrequest = $.ajax({
-		type: "POST",
-		url : "/app/survey_response/read",
-		data: {
-			campaign_urn : campaign_arg,
-			client : "dashboard",
-			user_list : "urn:ohmage:special:all",
-			prompt_id_list : "urn:ohmage:special:all",
-			output_format : "csv",
-			sort_oder : "timestamp",
-			column_list : "" + dashboard.config["columns"],
-			suppress_metadata : "true"
-		},
-		dataType: "text",
-		xhrFields: {
-			withCredentials: true
-		}
-	});
-	
-	myrequest.error(function(){
-		alert("Failed to download responses from Ohmage.")
-	});
-	
-	myrequest.done(function(rsptxt) {
-		if(!rsptxt || rsptxt == ""){
-			alert("Undefined error.")
-			return false;
-		} else {
-			oh.parsecsv(rsptxt)
-		}
-	});
 }
 
 oh.user.whoami = function(cb){
@@ -345,38 +241,63 @@ oh.keepactive = _.once(function(t){
 oh.getimageurl = function(record){	
 	var photo = dashboard.config.photo.item;
 	
+	//skip empty images
 	if(!record[photo] || record[photo] == "SKIPPED" || record[photo] == "NOT_DISPLAYED"){
 		return "images/nophoto.jpg"
 	} 		
-	if(dashboard.campaign_urn == "demo"){
-		var thumbtemplate = dashboard.config.photo.image || "data/demo/photos/{{ " + photo + " }}.jpg"
-		return Mustache.render(thumbtemplate, record);
-	} else { 
-		return "/app/image/read?client=dashboard&id=" + record[photo];
-	}
+
+	//render url
+	var thumbtemplate = dashboard.config.photo.image || oh.utils.error("No dashboard.config.photo.image specified");
+	return Mustache.render(thumbtemplate, record);
 }	
 
+//this is the function initiated by Mustache that starts the ohmage events.
+//the function gets the CSV for a given campaign_urn OR redirects to a page to select a campaign_urn.
+
+//The async stuff is a bit of a temporary hack because ohmage is poorly implemented to return http 200
+//when the csv download fails. So we do some additional calls to detect this.
 oh.getcsvurl = function(){
-	var mycampaign = oh.utils.state()[0];
-	if(mycampaign == ""){
-		oh.showlist();
-	} else {
-		var params = {
-		    campaign_urn: mycampaign,
-		    client: "dashboard",
-		    user_list: "urn:ohmage:special:all",
-		    prompt_id_list: "urn:ohmage:special:all",
-		    output_format: "csv",
-		    sort_oder: "timestamp",
-		    column_list: "" + [
-		        "urn:ohmage:context:timestamp",
-		        "urn:ohmage:prompt:response",
-		        "urn:ohmage:context:location:latitude",
-		        "urn:ohmage:context:location:longitude"
-		    ],
-		    suppress_metadata: "true"
-		}
-		var url = "/app/survey_response/read?" + jQuery.param(params);
-		return url;
-	}
+	
+	//some statics
+	var filter = dashboard.config.data.filter || ".";
+	var pattern = new RegExp(filter, "i");	
+	var campaign_urn = oh.utils.state()[0];	
+	
+	//if the current campaign is invalid, pick a new one
+	if(!campaign_urn || !pattern.test(campaign_urn)){
+		window.location = "choosecampaign.html?filter=" + filter;
+		oh.utils.error("Invalid campaign. Redirecting page.");
+	}	
+	
+	//else continue
+	var params = {
+	    campaign_urn: campaign_urn,
+	    client: "dashboard",
+	    user_list: "urn:ohmage:special:all",
+	    prompt_id_list: "urn:ohmage:special:all",
+	    output_format: "csv",
+	    sort_oder: "timestamp",
+	    column_list: "" + [
+	        "urn:ohmage:context:timestamp",
+	        "urn:ohmage:prompt:response",
+	        "urn:ohmage:context:location:latitude",
+	        "urn:ohmage:context:location:longitude"
+	    ],
+	    suppress_metadata: "true"
+	};	
+
+	//the following happens async (unfortunately)
+	//checks if we are logged in and if we have access to the campaign.
+	oh.user.whoami(function(){
+		oh.campaign_read(function(campaigns){
+			//from here we can assume we are authenticated to ohmage.
+			if($.inArray(campaign_urn, campaigns) < 0){
+				alert("No such campaign: " + campaign_urn); 
+				window.location = "choosecampaign.html?filter=" + filter;
+			}
+		});
+	});
+	
+	//return to Mustache
+	return decodeURIComponent("/app/survey_response/read?" + jQuery.param(params));
 } 

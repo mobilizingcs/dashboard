@@ -2,22 +2,9 @@
 	"title" : "Advertisement Dashboard",
 	"name" : "advertisement",
 	"data" : {
-		"demo" : true,
-		"ohmage" : false
+		"url" : "data/mediademo.csv"
 	},
-	"sources" : [
-		{
-			"name" : "media demo",
-			"url" : "data/mediademo.csv"
-		}	
-	],	
 	"item_main" : "Product",		
-	"columns" : [
-		"urn:ohmage:context:timestamp",
-		"urn:ohmage:prompt:response",
-		"urn:ohmage:context:location:latitude",
-		"urn:ohmage:context:location:longitude"	
-	],
 	"photo" : {
 		"item" : "AdPhoto",
 		"thumb" : "http://jeroenooms.github.io/lausd-data/media/thumbs/{{ AdPhoto }}.jpg",

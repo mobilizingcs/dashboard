@@ -25,6 +25,7 @@ www: clean
 	recess --compile less/snack.less > ${OUT}/css/snack.css
 	recess --compile less/login.less > ${OUT}/css/login.css
 	recess --compile less/help.less > ${OUT}/css/help.css
+	recess --compile less/choosecampaign.less > ${OUT}/css/choosecampaign.css
 	
 	#copy static files
 	cp -rf lib ${OUT}/lib
@@ -33,7 +34,7 @@ www: clean
 
 	#compile javascript
 	mkdir -p ${OUT}/js
-	cd source; uglifyjs snackboard.js debug.js loaddata.js charts.js ohmage.js map.js photopanel.js piechart.js barchart.js datechart.js hourchart.js wordcloud.js responsemodal.js filtercount.js help.js -o ${OUT}/js/snack.min.js
+	cd source; uglifyjs dashboard.js debug.js loaddata.js charts.js ohmage.js map.js photopanel.js piechart.js barchart.js datechart.js hourchart.js wordcloud.js responsemodal.js filtercount.js help.js -o ${OUT}/js/snack.min.js
 	
 	#demo data
 	if [ -e "data/$(CAMPAIGN).csv" ]; then cp data/$(CAMPAIGN).csv ${OUT}/data/$(CAMPAIGN).csv; fi

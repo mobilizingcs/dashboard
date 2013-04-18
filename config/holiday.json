@@ -2,16 +2,10 @@
 	"title" : "Holiday Decoration",
 	"name" : "holidays",
 	"data" : {
-		"demo" : false,
-		"ohmage" : true
+		"filter" : "holidays",
+		"url" : "{{ oh.getcsvurl }}"			
 	},
 	"item_main" : "Description",		
-	"columns" : [
-		"urn:ohmage:context:timestamp",
-		"urn:ohmage:prompt:response",
-		"urn:ohmage:context:location:latitude",
-		"urn:ohmage:context:location:longitude"	
-	],
 	"photo" : {
 		"item" : "DecorationImage",
 		"thumb" : "/app/image/read?client=dashboard&size=icon&id={{ DecorationImage }}",

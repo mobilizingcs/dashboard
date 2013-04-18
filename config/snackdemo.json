@@ -2,22 +2,9 @@
 	"title" : "Snack Dashboard",
 	"name" : "snack",
 	"data" : {
-		"demo" : true,
-		"ohmage" : false
+		"url" : "data/snackdemo.csv"
 	},
-	"sources" : [
-		{
-			"name" : "snack demo",
-			"url" : "data/snackdemo.csv"
-		}	
-	],
 	"item_main" : "WhatSnack",	
-	"columns" : [
-		"urn:ohmage:context:timestamp",
-		"urn:ohmage:prompt:response",
-		"urn:ohmage:context:location:latitude",
-		"urn:ohmage:context:location:longitude"	
-	],
 	"photo" : {
 		"item" : "SnackImage",
 		"thumb" : "http://jeroenooms.github.io/lausd-data/snack/thumbs/{{ SnackImage }}.jpg",

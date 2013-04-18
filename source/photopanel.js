@@ -95,12 +95,8 @@
 			if(!record[photoItem] || record[photoItem] == "SKIPPED" || record[photoItem] == "NOT_DISPLAYED"){
 				return "images/photothumb.jpg";
 			}
-			if(dashboard.campaign_urn == "demo"){
-				var thumbtemplate = options.thumb || "data/demo/thumbs/{{ " + photoItem + " }}.jpg";				
-				return Mustache.render(thumbtemplate, record);
-			} else {
-	 			return "/app/image/read?client=dashboard&size=icon&id=" + record[photoItem];
-			}
+			var thumbtemplate = options.thumb || oh.utils.error("No photo.thumb specified in config.");				
+			return Mustache.render(thumbtemplate, record);
 		}		
 		
 

@@ -2,16 +2,10 @@
 	"title" : "Litter Dashboard",
 	"name" : "litter",
 	"data" : {
-		"demo" : false,
-		"ohmage" : true
+		"filter" : "litter",
+		"url" : "{{ oh.getcsvurl }}"			
 	},
 	"item_main" : "Littertype:label",	
-	"columns" : [
-		"urn:ohmage:context:timestamp",
-		"urn:ohmage:prompt:response",
-		"urn:ohmage:context:location:latitude",
-		"urn:ohmage:context:location:longitude"	
-	],
 	"photo" : {
 		"item" : "LitterImage",
 		"thumb" : "/app/image/read?client=dashboard&size=icon&id={{ LitterImage }}",
