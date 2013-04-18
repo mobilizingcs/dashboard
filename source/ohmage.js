@@ -210,7 +210,7 @@ oh.utils.parsecsv = function(string){
 	});
 	
 	//load into gui
-	loaddata(records)
+	return records;
 }
 
 oh.user.whoami = function(cb){

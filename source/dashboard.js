@@ -48,15 +48,16 @@ $(document).ready(function() {
 			alert("Failed to download data from:\n" + csvpath)
 		}).done(function(rsptxt) {
 			dashboard.campaign_urn = oh.utils.state()[0];
-			oh.utils.parsecsv(rsptxt)
+			loaddata(oh.utils.parsecsv(rsptxt));
+			initcharts();
+			loadgui();
 		});	
 	}
 	
 	
 	//loads data
 	function loaddata(records){
-		
-		// load data
+		// init crossfilter
 		dashboard.data = crossfilter(records);
 		
 	    //save dashboard.dim
@@ -68,16 +69,17 @@ $(document).ready(function() {
 	    dashboard.groups = {
 	    	all: dashboard.data.groupAll()
 	    };
-	      
+	}
+	
+	
+	//initiates final gui stuff	
+	function loadgui(){
 	    //show an error if there is no data
 		if(dashboard.groups.all.value() == 0){
 			alert("Campaign '" + dashboard.campaign_urn + '" has no responses! Try again later (or press F5)')
 			$("#loadinganimation").hide();
 			return;
-		}	    
-	    
-		//init gui stuff
-	    initcharts();
+		}	
 		
 		//after map has been initiated
 		$("#buttonpanel").show();	
