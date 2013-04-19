@@ -6,3 +6,4 @@ make CAMPAIGN=mediademo
 make CAMPAIGN=holiday
 make CAMPAIGN=litter
 make CAMPAIGN=algebra
+make CAMPAIGN=trash

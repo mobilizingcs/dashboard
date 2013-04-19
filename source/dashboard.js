@@ -49,8 +49,10 @@ $(document).ready(function() {
 		}).done(function(rsptxt) {
 			dashboard.campaign_urn = oh.utils.state()[0];
 			loaddata(oh.utils.parsecsv(rsptxt));
-			initcharts();
-			loadgui();
+			if(hasdata()) {
+				initcharts();
+				loadgui();
+			}
 		});	
 	}
 	
@@ -71,15 +73,20 @@ $(document).ready(function() {
 	    };
 	}
 	
+	function hasdata(){
+		if(dashboard.groups.all.value() == 0){
+			alert("Campaign '" + dashboard.campaign_urn + '" has no responses! Try again later (or press F5)')
+			$("#loadinganimation").hide();
+			return false;
+		}	
+		return true;
+	}
+	
 	
 	//initiates final gui stuff	
 	function loadgui(){
 	    //show an error if there is no data
-		if(dashboard.groups.all.value() == 0){
-			alert("Campaign '" + dashboard.campaign_urn + '" has no responses! Try again later (or press F5)')
-			$("#loadinganimation").hide();
-			return;
-		}	
+	
 		
 		//after map has been initiated
 		$("#buttonpanel").show();	

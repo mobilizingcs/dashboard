@@ -1,6 +1,5 @@
 {
 	"title" : "Litter Dashboard",
-	"name" : "litter",
 	"data" : {
 		"filter" : "litter",
 		"url" : "{{ oh.getcsvurl }}"			

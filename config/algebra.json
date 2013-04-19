@@ -1,6 +1,5 @@
 {
 	"title" : "Algebra Dashboard",
-	"name" : "algebra1",
 	"data" : {
 		"filter" : "algebra1",
 		"url" : "{{ oh.getcsvurl }}"			

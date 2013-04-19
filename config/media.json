@@ -1,6 +1,5 @@
 {
 	"title" : "Advertisement Dashboard",
-	"name" : "advertisement",
 	"data" : {
 		"filter" : "advertisement",
 		"url" : "{{ oh.getcsvurl }}"			
