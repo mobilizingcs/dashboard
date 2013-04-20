@@ -1,7 +1,7 @@
 {
 	"title" : "Algebra Dashboard",
 	"data" : {
-		"filter" : "algebra1",
+		"filter" : "algebra1|math",
 		"url" : "{{ oh.getcsvurl }}"			
 	},
 	"item_main" : "nameofSnack",	
