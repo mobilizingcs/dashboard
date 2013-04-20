@@ -113,10 +113,12 @@
 				"showCoverageOnHover": true,
 				"zoomToBoundsOnClick": true
 			},
-			"geojson" : {
-				"item" : "neighborhood",
-				"url" : "data/geojson/la_county_simplified.min.json"
-			},
+			"geojson" : [
+				{
+					"item" : "neighborhood",
+					"url" : "data/la_county_simplified.min.json"
+				}
+			],
 			"tilelayers": [
 				{
 					"title" : "Standard",

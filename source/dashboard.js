@@ -52,6 +52,7 @@ $(document).ready(function() {
 			if(hasdata()) {
 				initcharts();
 				loadgui();
+				inithelp();
 			}
 		});	
 	}

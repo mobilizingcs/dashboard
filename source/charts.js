@@ -111,6 +111,4 @@ function initcharts(){
 			$("#" + panel).hide();
 		}
 	});	
-	
-	inithelp();
 }

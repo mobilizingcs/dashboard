@@ -17,13 +17,12 @@
 		//create dimensions
 		var getlat = oh.utils.getnum(options.item.lat);
 		var getlng = oh.utils.getnum(options.item.lng);
-		var getgeo = oh.utils.get(options.item.geo);
-	    
 		var latdim = dashboard.data.dimension(getlat);
 	    var lngdim = dashboard.data.dimension(getlng);
-	    var geodim = dashboard.data.dimension(getgeo);
-	    
+
 	    //create geo group
+		var getgeo = oh.utils.get(options.item.geo);	    
+	    var geodim = dashboard.data.dimension(getgeo);
 	    var geogroup = geodim.group()
 	    
 	    //for completeness
@@ -214,7 +213,7 @@
 				var areacounts = geogroup.all();
 				for(var i = 0; i < areacounts.length; i++){
 					var name = areacounts[i].key;
-					if(!name) continue;
+					if(!name || !allhoods[name]) continue;
 					allhoods[name].count = areacounts[i].value;
 				};
 			}		
@@ -295,6 +294,20 @@
 		
 		//create the layers with LA areas and add to map
 		neighborhoods = LAData(la_county);
+		//classify(neighborhoods);
+		
+		//classify points
+		function classify(polygons){
+			var markerdata = dashboard.dim.main.top(Infinity);
+			for (var i = 0; i < markerdata.length; i++) {
+				var a = markerdata[i];
+				if(!getlat(a)){
+					continue;
+				}
+				var result = leafletPip.pointInLayer([getlat(a), getlng(a)], polygons);
+				a.neighborhood = result[0];
+			}			
+		}
 
 		//add the area layer selector thingies		
 		var interactlayers = {
