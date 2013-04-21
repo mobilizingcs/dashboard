@@ -1,3 +1,6 @@
+//NOTE
+//currently, NA values for lat/long are turned into null, which the filter interprets as [0,0], which is in africa
+
 (function( $ ) {
 	$.fn.filtermap = function(options) {
 		
@@ -11,17 +14,22 @@
 		//this static variable controls if filters are activated when hovering over an neighborhood.
 		var filterOnHover = false;
 		
-		//NOTE
-		//currently, NA values for lat/long are turned into null, which the filter interprets as [0,0], which is in africa
-		
-		//create dimensions
+		//init some getters
 		var getlat = oh.utils.getnum(options.item.lat);
 		var getlng = oh.utils.getnum(options.item.lng);
+		var getgeo = oh.utils.get(options.item.geo);			
+		
+		//create neighborhoods layer
+		neighborhoods = LAData(la_county);
+		
+		//classify points into neighborhoods layer
+		classify(neighborhoods);				
+
+		//initiate dimensions
 		var latdim = dashboard.data.dimension(getlat);
 	    var lngdim = dashboard.data.dimension(getlng);
 
 	    //create geo group
-		var getgeo = oh.utils.get(options.item.geo);	    
 	    var geodim = dashboard.data.dimension(getgeo);
 	    var geogroup = geodim.group()
 	    
@@ -130,7 +138,7 @@
 		
 
 		//helper function to generate layers from geojson data
-		var LAData = function(jsondata){
+		function LAData(jsondata){
 			
 			//a table with all the neighbordhoods for this layer
 			var allhoods = {};				
@@ -292,20 +300,28 @@
 			}
 		});	
 		
-		//create the layers with LA areas and add to map
-		neighborhoods = LAData(la_county);
-		//classify(neighborhoods);
+
 		
 		//classify points
 		function classify(polygons){
 			var markerdata = dashboard.dim.main.top(Infinity);
 			for (var i = 0; i < markerdata.length; i++) {
 				var a = markerdata[i];
+				var cur = getgeo(a);
+				
+				//pre-classified:
+				if(cur && cur!="NA"){
+					continue;
+				}
+				
+				//no gps data:
 				if(!getlat(a)){
 					continue;
 				}
-				var result = leafletPip.pointInLayer([getlat(a), getlng(a)], polygons);
-				a.neighborhood = result[0];
+			
+				//try to classify:
+				var result = leafletPip.pointInLayer([getlng(a), getlat(a)], polygons, true);
+				a.neighborhood = result[0] ? result[0].feature.properties.name : "NA";
 			}			
 		}
 
@@ -332,7 +348,7 @@
 		//disable neighborhoods if not present in data
 		//note that null is also a group
 		if(geogroup.size() < 2){
-			layercontrol.removeLayer(neighborhoods);
+			//layercontrol.removeLayer(neighborhoods);
 		}
 
 		//add the state hover custom box
