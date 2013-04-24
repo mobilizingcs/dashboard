@@ -14,7 +14,7 @@
 		var maxwords = options.maxwords || 50;
 		
 		//create dimension
-    	dashboard.dim[variable] = dashboard.data.dimension(oh.utils.get(variable));		
+    	var mydim = dashboard.dim[variable] = dashboard.data.dimension(oh.utils.get(variable));		
 		
 		//construct piece of dom
 		var mydiv = $("<div/>").addClass("wccontainer").addClass("well").css("height", height).appendTo(target);
@@ -25,8 +25,19 @@
 			chartdiv.empty();
 			_.delay(update, 300);		
 		});		
+		$("<input />").attr("type", "text").attr("placeholder", "filter").appendTo(mydiv).on('keyup', function(){
+			filter(this.value);
+			//update();
+			dc.redrawAll()
+		});
+		
 		var chartdiv = $("<div/>").addClass("chart").attr("id", chartid).appendTo(mydiv);
 		
+		//constructs a new regex filter
+		function filter(word){
+			var filterfun = word ? function(val) {return new RegExp(word, "i").test(val)} : null
+			mydim.filter(filterfun)
+		}
 		
 		//cloud constructor
 		function build(words){
@@ -61,8 +72,8 @@
 			.start();	
 		}
 		
-		function refresh(){
-			if(!(chartdiv.is(":empty"))){
+		function refresh(fade){
+			if(fade && !(chartdiv.is(":empty"))){
 				chartdiv.fadeOut(500, function(){update();});
 			} else {
 				update();
@@ -88,7 +99,7 @@
 			if(chartdiv.is(":visible")){
 				refresh();
 			}					
-		}, 300)
+		}, 500)
 		
 		dashboard.wordcloud = dashboard.wordcloud || [];
 		dashboard.wordcloud.push(chartdiv)

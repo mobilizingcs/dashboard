@@ -23,7 +23,8 @@
 		neighborhoods = LAData(la_county);
 		
 		//classify points into neighborhoods layer
-		classify(neighborhoods);				
+		classify(neighborhoods);		
+		//classify_fast(la_county)
 
 		//initiate dimensions
 		var latdim = dashboard.data.dimension(getlat);
@@ -324,6 +325,32 @@
 				a.neighborhood = result[0] ? result[0].feature.properties.name : "NA";
 			}			
 		}
+		
+		function classify_fast(geodata){
+			var classifier = d3.geo.pip(geodata);
+			var markerdata = dashboard.dim.main.top(Infinity);
+			
+			for (var i = 0; i < markerdata.length; i++) {
+				var a = markerdata[i];
+				var cur = getgeo(a);
+				
+				//pre-classified:
+				if(cur && cur!="NA"){
+					continue;
+				}
+				
+				//no gps data:
+				if(!getlat(a)){
+					continue;
+				}
+
+				//try to classify:
+				var lnglat = [getlng(a), getlat(a)];
+				var result = classifier(lnglat);
+				a.neighborhood = result ? result.properties.name : "NA";
+			}				
+			
+		}
 
 		//add the area layer selector thingies		
 		var interactlayers = {
@@ -409,5 +436,10 @@
 		
 		//chain it
 		return mymap;
+	};
+	
+	function loadgeojson(url, cb){
+		var jqxhr = $.getJSON(url, cb).fail(function() { alert("failed to download geojson file: " + url); });		
 	}
+	
 })( jQuery );

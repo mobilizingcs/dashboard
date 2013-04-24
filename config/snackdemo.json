@@ -116,7 +116,7 @@
 			"geojson" : [
 				{
 					"item" : "neighborhood",
-					"url" : "data/la_county_simplified.min.json"
+					"url" : "lib/geojson/la_simplified.min.json"
 				}
 			],
 			"tilelayers": [

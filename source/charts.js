@@ -13,7 +13,11 @@ function initcharts(){
 
 		//register new function for the render event
 		function register(newfun, delay){
-			funstack.push(_.debounce(newfun, delay));	
+			if(!delay){
+				funstack.push(newfun);
+			} else {
+				funstack.push(_.debounce(newfun, delay));
+			}
 			dashboard.message("registered a new renderlet!")
 		}
 			
