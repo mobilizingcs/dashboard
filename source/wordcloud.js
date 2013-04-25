@@ -25,11 +25,14 @@
 			chartdiv.empty();
 			_.delay(update, 300);		
 		});		
-		$("<input />").attr("type", "text").attr("placeholder", "filter").appendTo(mydiv).on('keyup', function(){
+		var filterinput = $("<input />").attr("type", "text").attr("placeholder", "filter").appendTo(mydiv).on('keyup', function(){
 			filter(this.value);
-			//update();
 			dc.redrawAll()
 		});
+		$("<a/>").addClass("reset").addClass("hide").appendTo(titlediv).on("click", function(){
+			filterinput.val("");
+			filterinput.trigger("keyup");
+		})
 		
 		var chartdiv = $("<div/>").addClass("chart").attr("id", chartid).appendTo(mydiv);
 		

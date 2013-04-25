@@ -132,19 +132,7 @@
 					"title" : "Grayish",
 					"url" : "http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/22677/256/{z}/{x}/{y}.png",
 					"default" : true
-				},
-				{
-					"title" : "Quiet",
-					"url" : "http://{s}.latimes.com.s3.amazonaws.com/quiet-la-0.2.3/{z}/{x}/{y}.png",
-					"mapoptions" : {
-						"subdomains" : [
-							"tiles1",
-				 			"tiles2",
-				 			"tiles3",
-				 			"tiles4"
-						]
-					}
-				}			
+				}		
 			] 
 		}
 	]
