@@ -139,6 +139,8 @@
 			var getlng = oh.utils.getnum(itemgeo.lng);	
 			
 			var markerdata = dashboard.dim.main.top(Infinity);
+			
+			var starttime = new Date().getTime();
 			for (var i = 0; i < markerdata.length; i++) {
 				var a = markerdata[i];
 
@@ -150,7 +152,10 @@
 				//try to classify:
 				var result = leafletPip.pointInLayer([getlng(a), getlat(a)], geojson, true);
 				a.jsonpip = result[0] ? result[0].feature.properties.name : "NA";
-			}			
+			}		
+			var enddtime = new Date().getTime();
+			var delta = enddtime - starttime;
+			dashboard.message("classification of " + markerdata.length + "points took: " + delta + "ms.")
 		}			
 		
 		geojson = L.geoJson(geojsondata, {
