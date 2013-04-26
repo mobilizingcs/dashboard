@@ -33,6 +33,7 @@
 			downloadgeojson(conf.url, function(data){
 				var newlayer = buildgeojsonlayer(data).setinfo(infobox).setmap(mymap).setfilter(conf.item, options.item).colormap();
 				newlayer.setcontrol(layercontrol, urltail(conf.url));
+				geojsonlayers.push(newlayer);
 			})
 		});		
 		

@@ -72,6 +72,7 @@ function initcharts(){
 	
 	//assume only one map for now
 	dashboard.map = $('#map').filtermap(dashboard.config.maps[0]);	
+	$("#map").hide();
 	
 	//fix the radio buttons
 	$(".leaflet-control-layers-base").addClass("radio")

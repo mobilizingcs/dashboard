@@ -10,6 +10,7 @@
 
 		$("<a/>").addClass("reset").attr("href", "#").text("(reset all)").appendTo(titlediv).on("click", function(e){
 			e.preventDefault();
+			$("#wcpanel .reset").trigger("click")
 			if(dashboard.map) dashboard.map.resetall();
 			dc.filterAll(); 
 			dc.renderAll();

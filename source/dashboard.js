@@ -97,6 +97,7 @@ $(document).ready(function() {
 		//$("#photobutton").trigger("click");	
 		$("#timeseriesbutton").trigger("click");
 		$("#piechartbutton").trigger("click");
+		//$("#mapbutton").trigger("click");
 		dc.renderAll();
 		
 		//update dashboard title
