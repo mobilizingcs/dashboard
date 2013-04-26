@@ -8,7 +8,7 @@
 		});		
 		
 		//add tile layer(s)
-		var cloudmaps = {};
+		var cloudmaps = {"Blank" : L.layerGroup()};
 		var defaultmap;		
 		$(options.tilelayers).each(function(index, conf) {
 			cloudmaps[conf.title] = tilelayer(conf);
@@ -22,6 +22,7 @@
 		
 		//switch layers
 		var mapcontrol = new L.Control.Layers(cloudmaps,{}).setPosition("bottomright").addTo(mymap);
+		var layercontrol = new L.Control.Layers({"none" : L.layerGroup()},{}).setPosition("bottomright").addTo(mymap);		
 
 		//info box
 		var infobox = makeinfo("<h4>Neighborhood</h4> <b> {{ name }} </b>").addTo(mymap);
@@ -30,8 +31,8 @@
 		var geojsonlayers = [];
 		$(options.geojson).each(function(index, conf) {
 			downloadgeojson(conf.url, function(data){
-				var newlayer = buildgeojsonlayer(data).setinfo(infobox).setmap(mymap).setfilter(conf.item, options.item);
-				geojsonlayers.push(newlayer);
+				var newlayer = buildgeojsonlayer(data).setinfo(infobox).setmap(mymap).setfilter(conf.item, options.item).colormap();
+				newlayer.setcontrol(layercontrol, urltail(conf.url));
 			})
 		});		
 		
@@ -112,7 +113,7 @@
 				opacity: 1,
 				color: 'white',
 				dashArray: '3',
-				fillOpacity: 0.7,
+				fillOpacity: 0.85,
 				fillColor: getColor(feature.properties)
 			};
 		}	
@@ -131,6 +132,7 @@
 			});
 			
 			selected && selected.setStyle({"fillColor": "steelblue"});
+			return geojson;
 		}
 		
 		function classify(itemgeo){
@@ -179,6 +181,12 @@
 			return geojson;
 		}
 		
+		geojson.setcontrol = function(newcontrol, name){
+			newcontrol.addBaseLayer(geojson, name);
+		}
+		
+		geojson.colormap = colormap;
+		
 		geojson.setfilter = function(newitem, itemgeo){
 			if(newitem){
 				//filter using column in the data
@@ -190,7 +198,7 @@
 			}
 			geodim = dashboard.data.dimension(getgeo);
 			geogroup = geodim.group();
-			dashboard.renderlet.register(colormap);		
+			dashboard.renderlet.register(colormap, 100);		
 			return geojson;
 		}
 		
@@ -210,6 +218,10 @@
 		return mylayer;
 	}
 	
+	function urltail(mystring){
+		var x = mystring.split("/");
+		return x[x.length-1];		
+	}
 
 	
 	function makeinfo(titletemplate){

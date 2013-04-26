@@ -29,12 +29,14 @@
 			filter(this.value);
 			dc.redrawAll()
 		});
-		$("<a/>").addClass("reset").addClass("hide").appendTo(titlediv).on("click", function(){
-			filterinput.val("");
-			filterinput.trigger("keyup");
-		})
+		$("<a/>").addClass("reset").addClass("hide").appendTo(titlediv).on("click", function(){setvalue()})
 		
 		var chartdiv = $("<div/>").addClass("chart").attr("id", chartid).appendTo(mydiv);
+		
+		function setvalue(newval){
+			filterinput.val(newval || "");
+			filterinput.trigger("keyup");			
+		}
 		
 		//constructs a new regex filter
 		function filter(word){
@@ -62,7 +64,10 @@
 				.attr("transform", "translate(" + (width/2) + "," + (height/2) + ")")
 				.selectAll("text")
 				.data(words)
-				.enter().append("text")
+				.enter()
+				.append("a")
+				.on("click", function(d){setvalue(d.text); return false;})				
+				.append("text")
 				.style("font-size", function(d) { return d.size + "px"; })
 				.style("font-family", font)
 				.style("fill", function(d, i) { return fill(i); })
@@ -70,7 +75,8 @@
 				.attr("transform", function(d) {
 					return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
 				})
-				.text(function(d) { return d.text; });
+				.text(function(d) { return d.text; })
+
 			})
 			.start();	
 		}
