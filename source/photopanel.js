@@ -29,7 +29,7 @@
 		}
 		
 		function updatepictures(){
-			dashboard.message("updating thumbnails.")
+			var starttime = new Date().getTime();
 			if(pages.length == 0) return;			
 			var newlist = $("<ul>", {class: "thumbnails"})
 			var thispage = pages[currentpage];			
@@ -50,6 +50,11 @@
 	 			})());
 	 			img.on("error", imgerror);
 	 		}
+	 		
+			//for debug
+			var enddtime = new Date().getTime();
+			var delta = enddtime - starttime;			
+			dashboard.message("updating thumbnails took: " + delta + "ms.")	 		
 	 	
 	 		function displaythumblist(){
 				newlist.appendTo("#imagelist");

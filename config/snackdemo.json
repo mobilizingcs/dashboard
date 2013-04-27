@@ -103,8 +103,7 @@
 		{
 			"item" : {
 				"lat" : "context:location:latitude", 
-				"lng" : "context:location:longitude",
-				"geo" : "neighborhood"
+				"lng" : "context:location:longitude"
 			},
 			"center" : [34.0522222, -118.2427778],
 			"zoom" : 9,
@@ -116,21 +115,25 @@
 			"geojson" : [
 				{
 					"item" : "neighborhood",
+					"title" : "neighborhoods",
 					"url" : "lib/geojson/la_simplified.min.json"
 				}
 			],
 			"tilelayers": [
 				{
 					"title" : "Standard",
-					"url" : "http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/1/256/{z}/{x}/{y}.png"
+					"key" : "BC9A493B41014CAABB98F0471D759707",
+					"styleId" : 1
 				},
 				{
 					"title" : "Road", 
-					"url" : "http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/997/256/{z}/{x}/{y}.png"
+					"key" : "BC9A493B41014CAABB98F0471D759707",
+					"styleId" : 997
 				},
 				{
-					"title" : "Grayish",
-					"url" : "http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/22677/256/{z}/{x}/{y}.png",
+					"title" : "Minimal",
+					"key" : "BC9A493B41014CAABB98F0471D759707",
+					"styleId" : 22677,
 					"default" : true
 				}		
 			] 

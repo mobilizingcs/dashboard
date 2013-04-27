@@ -90,7 +90,7 @@
 		}
 		
 		function update(){
-			dashboard.message("updating wordcloud: " + chartid)
+			var starttime = new Date().getTime();
 			chartdiv.empty();
 			var alldata = dashboard.dim.main.top(9999);
 			var textarray = alldata.map(function(d){
@@ -98,7 +98,12 @@
 			})
 			var wordcounts = wordmap(textarray.join(" "), maxwords);	
 			var words = wordcounts.map(function(d){return {text : d.key, size : d.value}})
-			build(words);		
+			build(words);	
+			
+			//for debug
+			var enddtime = new Date().getTime();
+			var delta = enddtime - starttime;			
+			dashboard.message("updating wordcloud took: " + delta + "ms.")
 			
 			$(chartdiv).fadeIn(500)			
 		}

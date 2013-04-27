@@ -3,21 +3,16 @@ April 19
 
 Map updates:
 
- * Implement point-in-polygon (maybe look for faster lib than leaflet-pip)
- * Change geojson files to be loaded dynamically.
- * Clean up maps.js to support multiple layers and dynamic classification.
- * If a geojson layer config contains "item" it will use that column. Otherwise, points will be classified based on lat/lng.
  * Geojson files are like csv files wrt same origin policy. When URL is remote, we need a proxy. 
  * Re-organize directories such that config.json, data.csv and geojson file(s) are in a single directory.
 
-
-Wordcloud:
-
- * Dynamic filtering using regex.
- * Maybe re-implement as native dc.js
- 
 Generalizing
  
  * Add option for user to change viz configurations
- *  
- 
+ * Options can either be specified during the construction, or by calling the chain methods
+ * The constructor automatically calls chain methods for config options.
+ * Each dashboard plugin should at least implement the following methods (perhaps look what dc.js calls them).
+   - show (shows entire graph)
+   - hide (hides entire graph)
+   - refresh (redraws)
+   - reset (resets filters)

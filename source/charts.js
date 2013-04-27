@@ -72,7 +72,6 @@ function initcharts(){
 	
 	//assume only one map for now
 	dashboard.map = $('#map').filtermap(dashboard.config.maps[0]);	
-	$("#map").hide();
 	
 	//fix the radio buttons
 	$(".leaflet-control-layers-base").addClass("radio")
@@ -97,8 +96,6 @@ function initcharts(){
 			if(panel == "photopanel") {
 				dashboard.photopanel.showme();
 			}
-			//click refresh links in current panel
-			$("#" + panel + " a.refresh").trigger("click");
 			
 			//reset and show both current panel and draggable subpanels
 			$("#" + panel + ".ui-resizable").width("").height("")
@@ -110,6 +107,9 @@ function initcharts(){
 			
 			//show the panel
 			$("#" + panel).show();
+			
+			//click refresh links in current panel
+			$("#" + panel + " a.refresh").trigger("click");			
 		} else {
 			//hiding a panel resets filters
 			$("#" + panel + " a.reset").trigger("click");

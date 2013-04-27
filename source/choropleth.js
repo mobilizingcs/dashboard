@@ -2,13 +2,21 @@
 	$.fn.filtermap = function(options) {
 		
 		//init map
-		var mymap = new L.Map(this.attr("id"), {
-			center: options.center || [0,0],
-			zoom: options.zoom || 9
+		var mapid = this.attr("id");
+		var mymap = new L.Map(mapid)
+		
+		//we hide the map on load
+		mymap.whenReady(function(){
+			$("#" + mapid).hide();
 		});		
+
+		//init
+		var	center = options.center || [0,0];
+		var zoom = options.zoom || 9;
+		mymap.setView(center, zoom);
 		
 		//add tile layer(s)
-		var cloudmaps = {"Blank" : L.layerGroup()};
+		var cloudmaps = {};
 		var defaultmap;		
 		$(options.tilelayers).each(function(index, conf) {
 			cloudmaps[conf.title] = tilelayer(conf);
@@ -20,38 +28,164 @@
 		//add to map (if exists)
 		defaultmap && defaultmap.addTo(mymap);
 		
-		//switch layers
+		//markercluster layer
+		var markerlayer = buildmarkerlayer(options).setmap(mymap);		
+
+		//layer array
+		var geolayers = [markerlayer];
+		
+		//layer controls
 		var mapcontrol = new L.Control.Layers(cloudmaps,{}).setPosition("bottomright").addTo(mymap);
-		var layercontrol = new L.Control.Layers({"none" : L.layerGroup()},{}).setPosition("bottomright").addTo(mymap);		
+		var layercontrol = new L.Control.Layers({"none" : L.layerGroup(), "markers" : markerlayer},{}).setPosition("bottomright").addTo(mymap);		
 
 		//info box
 		var infobox = makeinfo("<h4>Neighborhood</h4> <b> {{ name }} </b>").addTo(mymap);
 		
 		//geojsonlayers
-		var geojsonlayers = [];
 		$(options.geojson).each(function(index, conf) {
 			downloadgeojson(conf.url, function(data){
 				var newlayer = buildgeojsonlayer(data).setinfo(infobox).setmap(mymap).setfilter(conf.item, options.item).colormap();
-				newlayer.setcontrol(layercontrol, urltail(conf.url));
-				geojsonlayers.push(newlayer);
+				newlayer.setcontrol(layercontrol, conf.title || urltail(conf.url));
+				geolayers.push(newlayer);
 			})
-		});		
+		});
 		
-		//construct lat/lng dimensions
-		var getlat = oh.utils.getnum(options.item.lat);
-		var getlng = oh.utils.getnum(options.item.lng);
-		var latdim = dashboard.data.dimension(getlat);
-	    var lngdim = dashboard.data.dimension(getlng);	
-	    dashboard.dim["lat"] = latdim;
-	    dashboard.dim["lng"] = lngdim;	    
+		//trigger reset on layer switch event.
+		mymap.on("baselayerchange", function(LayerEvent){
+			if(LayerEvent.layer.options && LayerEvent.layer.options.tileSize){
+				//this is just a tile layer;
+				return;
+			}
+			dashboard.message("changing base layers...");
+			$(geolayers).each(function(index, layer){
+				if(layer.reset) layer.reset();
+			});
+		});	
+		
+		$("<a>").addClass("refresh").addClass("hide").appendTo("#"+mapid).on("click", function(){
+			dashboard.message("forcing map refresh")
+			mymap.invalidateSize();
+		})
+
 		
 	    mymap.resetall = function(){
-	    	$(geojsonlayers).each(function(index, layer){
+	    	$(geolayers).each(function(index, layer){
 	    		layer.reset();
 	    	});
 	    }
 		
 		return mymap;
+	}
+	
+	function buildmarkerlayer(options){
+		
+		var map;
+		var markerblocker;
+		var getlat = oh.utils.getnum(options.item.lat);
+		var getlng = oh.utils.getnum(options.item.lng);		
+		var latdim = dashboard.data.dimension(getlat);
+	    var lngdim = dashboard.data.dimension(getlng);	
+		var markerlayer = new L.MarkerClusterGroup(options.clusteroptions || {});
+
+		//for debugging
+	    dashboard.dim["lat"] = latdim;
+	    dashboard.dim["lng"] = lngdim;			
+		
+		function renderMarkers(){
+			if(!map) return;
+			map.removeLayer(markerlayer);
+			markerlayer.clearLayers();
+			
+			//get new data
+			var markerdata = dashboard.dim.main.top(Infinity);
+			for (var i = 0; i < markerdata.length; i++) {
+				var a = markerdata[i];
+				if(!getlat(a)){
+					dashboard.message("skipping record " + i + " (no valid latlng)")
+					continue;
+				}
+
+				var marker = new L.Marker(new L.LatLng(getlat(a), getlng(a)), { title: a[dashboard.config["item_main"]] });
+				markerlayer.addLayer(marker);
+				marker.on("click", (function(){
+					var k = a;
+					return function(){dashboard.modal.showmodal(k)};
+				})());
+			}
+			map.addLayer(markerlayer);
+			return markerlayer;
+		}	
+		
+		function geofilter(){
+			if(!map.hasLayer(markerlayer)) {
+				latdim.filter(null);
+				lngdim.filter(null);
+				//return;
+			} else {
+				var bounds = map.getBounds();
+				var lat = [bounds.getNorthEast()["lat"], bounds.getSouthWest()["lat"]];
+				var lng = [bounds.getNorthEast()["lng"], bounds.getSouthWest()["lng"]];
+				
+				//flip around if needed
+				lat = lat[0] < lat[1] ? lat : [ lat[1] , lat[0] ];
+				lng = lng[0] < lng[1] ? lng : [ lng[1] , lng[0] ];
+				
+				//filter
+				latdim.filter(lat);
+				lngdim.filter(lng);
+			}
+			return markerlayer;
+		}	
+		
+		function domarkers(){
+			//debug
+			var starttime = new Date().getTime();
+			
+			markerlayer.clearLayers();			
+			latdim.filter(null);
+			lngdim.filter(null);  			
+			renderMarkers(Infinity);
+			geofilter();
+			
+			//debug
+			var enddtime = new Date().getTime();
+			var delta = enddtime - starttime;			
+			dashboard.message("updating markers took: " + delta + "ms.")				
+		}		
+		
+		function setmap(newmap){
+			map = newmap;
+			map.on("moveend", function(){
+				if(map.hasLayer(markerlayer)){
+					geofilter();
+					markerblocker = true;
+					dc.redrawAll();	
+				}
+			});	
+			
+			dashboard.renderlet.register(function(){		
+		    	if(map.hasLayer(markerlayer)){
+		    		if(markerblocker) {
+		    			markerblocker = false;
+		    		}  else { 
+		    			domarkers();
+		    		}
+		    	}
+			}, 200);	
+			return markerlayer
+		}
+		
+		//export
+		markerlayer.setmap = setmap;
+		
+		//for map.on(layeradd)
+		markerlayer.reset = function(){
+			markerlayer.clearLayers();			
+			latdim.filter(null);
+			lngdim.filter(null);  			
+		}
+		
+		return markerlayer;
 	}
 	
 	function buildgeojsonlayer(geojsondata, getlat, getlng){
@@ -120,23 +254,41 @@
 		}	
 		
 		function colormap(){
-			if(!geogroup) return;
+			//check if initialized
+			if(!geogroup || !map) {
+				return geojson;
+			}
+			
+			//layer isn't active
+			if(!map.hasLayer(geojson)){
+				return geojson
+			}
+			
+			var starttime = new Date().getTime();
+			
 			var allgroups = geogroup.all();
 			var countobject = {};
 			$.each(allgroups, function(index, neighborhood) {
 				countobject[neighborhood.key] = neighborhood.value;
 			});
 			
+			//color each individual polygon
 			geojson.eachLayer(function(layer){
 				layer.feature.properties.count = countobject[layer.feature.properties.name];
 				geojson.resetStyle(layer)
 			});
 			
 			selected && selected.setStyle({"fillColor": "steelblue"});
+			
+			//for debug
+			var enddtime = new Date().getTime();
+			var delta = enddtime - starttime;			
+			dashboard.message("coloring maps took: " + delta + "ms.")			
+			
 			return geojson;
 		}
 		
-		function classify(itemgeo){
+		function classify(itemgeo, name){
 			//dupe?
 			var getlat = oh.utils.getnum(itemgeo.lat);
 			var getlng = oh.utils.getnum(itemgeo.lng);	
@@ -154,7 +306,7 @@
 			
 				//try to classify:
 				var result = leafletPip.pointInLayer([getlng(a), getlat(a)], geojson, true);
-				a.jsonpip = result[0] ? result[0].feature.properties.name : "NA";
+				a[name] = result[0] ? result[0].feature.properties.name : "NA";
 			}		
 			var enddtime = new Date().getTime();
 			var delta = enddtime - starttime;
@@ -173,7 +325,6 @@
 		
 		geojson.setmap = function(newmap){
 			map = newmap;
-			geojson.addTo(map);
 			return geojson;
 		}
 		
@@ -194,8 +345,9 @@
 				var getgeo = oh.utils.get(newitem);
 			} else {
 				//	filter by auto classification
-				classify(itemgeo)
-				var getgeo = oh.utils.get("jsonpip");
+				var dimname = "jsonpip";
+				classify(itemgeo, dimname)
+				var getgeo = oh.utils.get(dimname);
 			}
 			geodim = dashboard.data.dimension(getgeo);
 			geogroup = geodim.group();
@@ -212,10 +364,11 @@
 	}
 	
 	function tilelayer(conf){
-		var mapoptions = conf.mapoptions || {};
+		var mapoptions = conf || {};
+		var url = conf.url || 'http://{s}.tile.cloudmade.com/{key}/{styleId}/256/{z}/{x}/{y}.png';
 		mapoptions.attribution = mapoptions.attribution || false;
-		mapoptions.maxZoom = mapoptions.attribution || 18;
-		var mylayer = new L.TileLayer(conf.url, mapoptions);
+		mapoptions.maxZoom = mapoptions.maxZoom || 18;
+		var mylayer = new L.TileLayer(url, mapoptions);
 		return mylayer;
 	}
 	
@@ -236,7 +389,7 @@
 		};
 
 		info.update = function (props) {
-			this._div.innerHTML = Mustache.render(titletemplate, props);
+			this._div.innerHTML = props ? Mustache.render(titletemplate, props) : "";
 		};
 
 		return info;
