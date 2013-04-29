@@ -115,7 +115,7 @@
 			"geojson" : [
 				{
 					"item" : "neighborhood",
-					"title" : "neighborhoods",
+					"title" : "Neighborhoods",
 					"url" : "lib/geojson/la_simplified.min.json"
 				}
 			],

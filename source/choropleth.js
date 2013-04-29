@@ -3,7 +3,7 @@
 		
 		//init map
 		var mapid = this.attr("id");
-		var mymap = new L.Map(mapid)
+		var mymap = new L.Map(mapid);
 		
 		//we hide the map on load
 		mymap.whenReady(function(){
@@ -36,10 +36,12 @@
 		
 		//layer controls
 		var mapcontrol = new L.Control.Layers(cloudmaps,{}).setPosition("bottomright").addTo(mymap);
-		var layercontrol = new L.Control.Layers({"none" : L.layerGroup(), "markers" : markerlayer},{}).setPosition("bottomright").addTo(mymap);		
+		var layercontrol = new L.Control.Layers({"Disable" : L.layerGroup(), "Markers" : markerlayer},{}).setPosition("topright").addTo(mymap);		
 
 		//info box
-		var infobox = makeinfo("<h4>Neighborhood</h4> <b> {{ name }} </b>").addTo(mymap);
+		var infobox = makeinfo();
+		mymap.addControl(infobox);
+		markerlayer.setinfo(infobox);
 		
 		//geojsonlayers
 		$(options.geojson).each(function(index, conf) {
@@ -57,17 +59,25 @@
 				return;
 			}
 			dashboard.message("changing base layers...");
+			infobox.update("")
 			$(geolayers).each(function(index, layer){
 				if(layer.reset) layer.reset();
 			});
+
 		});	
 		
 		$("<a>").addClass("refresh").addClass("hide").appendTo("#"+mapid).on("click", function(){
 			dashboard.message("forcing map refresh")
 			mymap.invalidateSize();
 		})
-
 		
+		$("<a>").addClass("reset").addClass("hide").appendTo("#"+mapid).on("click", function(){
+			//this is hacky
+			dashboard.message("resetting map state")
+			$("#" + mapid + " input[type=radio]:first").trigger("click");
+			mymap.setView(center, zoom, true);
+		})		
+
 	    mymap.resetall = function(){
 	    	$(geolayers).each(function(index, layer){
 	    		layer.reset();
@@ -81,6 +91,7 @@
 		
 		var map;
 		var markerblocker;
+		var info;
 		var getlat = oh.utils.getnum(options.item.lat);
 		var getlng = oh.utils.getnum(options.item.lng);		
 		var latdim = dashboard.data.dimension(getlat);
@@ -134,6 +145,13 @@
 				latdim.filter(lat);
 				lngdim.filter(lng);
 			}
+			
+			function round(original){
+				return original.toFixed(3)
+			}
+			
+			info && info.update("<pre>" + round(bounds.getSouthWest()["lat"]) + " < lat < " + round(bounds.getNorthEast()["lat"]) + "\n" + round(bounds.getSouthWest()["lng"]) + " < lng < " + round(bounds.getNorthEast()["lng"]) + "</pre>");
+			
 			return markerlayer;
 		}	
 		
@@ -175,6 +193,11 @@
 			return markerlayer
 		}
 		
+		markerlayer.setinfo = function(newinfo){
+			info = newinfo;
+			return markerlayer;
+		}
+		
 		//export
 		markerlayer.setmap = setmap;
 		
@@ -200,6 +223,7 @@
 		
 		function hoverin(e) {
 			var layer = e.target;
+			var infotemplate = "<div><h4>Neighborhood</h4> <b> {{ name }} </b></div>";
 
 			layer.setStyle({
 				weight: 3,
@@ -211,7 +235,7 @@
 				layer.bringToFront();
 			}
 
-			info && info.update(layer.feature.properties);
+			info && info.update(Mustache.render(infotemplate, layer.feature.properties));
 		}
 		
 		function hoverout(e) {
@@ -220,7 +244,7 @@
 				color: "white",
 				dashArray: '3'
 			})
-			info && info.update();
+			info && info.update("<div><h4>Neighborhood</h4><i>Hover over map</i></div>");
 		}
 
 		function selectNeighborhood(e){
@@ -378,18 +402,19 @@
 	}
 
 	
-	function makeinfo(titletemplate){
+	function makeinfo(){
 		// control that shows state info on hover
 		var info = L.control();
 
 		info.onAdd = function () {
 			this._div = L.DomUtil.create('div', 'info');
+			this._div.id = "infobox"
 			this.update();
 			return this._div;
 		};
 
-		info.update = function (props) {
-			this._div.innerHTML = props ? Mustache.render(titletemplate, props) : "";
+		info.update = function (infotext) {
+			this._div.innerHTML = infotext || "<div><h4>Load Data</h4><i>Select Data Layer</i></div>";
 		};
 
 		return info;
