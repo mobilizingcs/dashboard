@@ -40,7 +40,20 @@ To build the included live dashboards:
 	make CAMPAIGN=holiday
 	make CAMPAIGN-algebra
 
-That's it :-)
+Updating Demo Data
+------------------
+
+Below the steps to update the data of demo campaigns:
+
+ 1. Study the `snackdemo.json` and `mediademo.json` file, especially `photo.thumb` and `photo.img` properties. These must resolve to local or external locations of the pictures.
+ 2. Study the included `data/snackdemo.csv` and `data/mediademo.csv`, especially column names. Order of the columns is not important, but the exact name is.
+ 3. Export the campaign data in CSV format from Ohmage. Combine all data into a single dataset.
+ 4. Check that the column names are the same as in the current `snackdemo.csv` and `mediademo.csv`. Rename where necessary.
+ 5. Remove un-needed columns from the dataset.
+ 6. Clean up the data: remove all rows with uncomplete survey responses.
+ 7. Export all the icons and images from all photos in the dataset and put them on a web server somewhere.
+ 8. Update the `photo.thumb` and `photo.img` properties in the config file to point to the image server.
+ 9. (optional) add random values to the longitude and latitude columns for privacy.
 
 
 
