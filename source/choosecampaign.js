@@ -8,7 +8,7 @@ $(document).ready(function() {
 		var allcampaigns = [];
 		var nexturl = getURLParameter("next") || ".";
 
-		campaigns.forEach(function(o){
+		campaigns.sort().forEach(function(o){
 			if(pattern.test(o)){
 				allcampaigns.push(o);
 				$("#campaignlist").append('<li><a target="_blank" href="' + nexturl + '#' + o + '">' + o + '</a></li>');
