@@ -1,5 +1,5 @@
 {
-	"title" : "Algebra Dashboard",
+	"title" : "Nutrition Dashboard",
 	"data" : {
 		"filter" : "algebra1|:math:",
 		"url" : "{{ oh.getcsvurl }}"			

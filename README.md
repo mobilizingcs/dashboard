@@ -38,7 +38,7 @@ To build the included live dashboards:
 	make CAMPAIGN=litter
 	make CAMPAIGN=trash
 	make CAMPAIGN=holiday
-	make CAMPAIGN-algebra
+	make CAMPAIGN=nutrition
 
 Updating Demo Data
 ------------------

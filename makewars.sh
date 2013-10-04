@@ -5,5 +5,5 @@ make war CAMPAIGN=media
 make war CAMPAIGN=mediademo
 make war CAMPAIGN=holiday
 make war CAMPAIGN=litter
-make war CAMPAIGN=algebra
+make war CAMPAIGN=nutrition
 make war CAMPAIGN=trash
