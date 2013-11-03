@@ -68,6 +68,11 @@ function initcharts(){
 	})		
 
 	//create record counter
+	$(dashboard.config.dropdowns).each(function(index, conf) {
+		$("#dropdowndiv").dropdown(conf)
+	});
+
+	//create record counter
 	$("#infodiv").filtercount();
 	
 	//assume only one map for now

@@ -109,6 +109,12 @@
 			"item" : "FeelingLitter"
 		}
 	],
+	"dropdowns" : [
+		{
+			"title" : "User",
+			"item" : "user:id"
+		}
+	],	
 	"maps" : [
 		{
 			"item" : {

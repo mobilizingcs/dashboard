@@ -278,6 +278,7 @@ oh.getcsvurl = function(){
 	    output_format: "csv",
 	    sort_oder: "timestamp",
 	    column_list: "" + [
+	    	"urn:ohmage:user:id",
 	        "urn:ohmage:context:timestamp",
 	        "urn:ohmage:prompt:response",
 	        "urn:ohmage:context:location:latitude",

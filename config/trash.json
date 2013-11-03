@@ -47,6 +47,12 @@
 			"item" : "trashName"
 		}
 	],
+	"dropdowns" : [
+		{
+			"title" : "User",
+			"item" : "user:id"
+		}
+	],	
 	"maps" : [
 		{
 			"item" : {

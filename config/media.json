@@ -94,6 +94,12 @@
 			"height" : 200	
 		}
 	],
+	"dropdowns" : [
+		{
+			"title" : "User",
+			"item" : "user:id"
+		}
+	],	
 	"maps" : [
 		{
 			"item" : {
