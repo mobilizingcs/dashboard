@@ -11,7 +11,7 @@
 		var wcdelay = oh.utils.delayexec();
 		var chartid = "wc-" + Math.random().toString(36).substring(7);
 		var resizable = options.resizable || false;
-		var maxwords = options.maxwords || 50;
+		var maxwords = options.maxwords || 80;
 		
 		//create dimension
     	var mydim = dashboard.dim[variable] = dashboard.data.dimension(oh.utils.get(variable));		
@@ -127,8 +127,13 @@
 				"stop" : function(event, ui){
 					width = ui.size.width;
 					height = ui.size.height;
+					maxwords = width*height / 1600;
 					update();
-				}
+				},
+				maxHeight: 400,
+				maxWidth: 600,
+				minHeight: 50,
+				minWidth: 320
 			});	
 		}
 		return chartdiv;
