@@ -6,9 +6,10 @@
 		var title = options.title || item;
 		var domain = options.domain || [];
 		var chartid = "bar-" + Math.random().toString(36).substring(7);
+		var na = options.na || undefined;
 		
 		//create dimension and group
-    	dashboard.dim[item] = dashboard.data.dimension(oh.utils.getnum(item));
+    	dashboard.dim[item] = dashboard.data.dimension(oh.utils.getnum(item, na));
     	
 		//calculate date range
 		domain[0] = domain[0] || +dashboard.dim[item].bottom(1)[0][item];

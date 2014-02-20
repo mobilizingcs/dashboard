@@ -37,28 +37,35 @@ oh.utils.parsedate = function(datestring){
 	return new Date (a[0],a[1]-1,a[2],a[3],a[4],a[5]);
 }
 
-oh.utils.get = function(item){
+oh.utils.get = function(item, na){
+	na = na || "NA";
 	return function(d){
-		if(d[item] && d[item] != "NOT_DISPLAYED"){
-			return d[item];
-		}
-		//NA support in dc.js piechart is really bad.
-		return "NA"
+		return d[item] || na;
 	}
 }
 
-oh.utils.getnum = function(item){
+oh.utils.getnum = function(item, na){
 	return function(d){
-		if(d[item] && d[item] != "NOT_DISPLAYED"){
-			return parseFloat(d[item]) || null;
+		return parseFloat(d[item]) || na;
+	}
+}
+
+oh.utils.getdate = function(item, na){
+	return function(d){
+		if(d[item] && d[item] != "NOT_DISPLAYED" && d[item] != "SKIPPED"){
+			return d3.time.day(oh.utils.parsedate(d[item])) || na;
+		} else {
+			return na;
 		}
 	}
 }
 
-oh.utils.getdate = function(item){
+oh.utils.gethour = function(item, na){
 	return function(d){
 		if(d[item] && d[item] != "NOT_DISPLAYED"){
-			return d3.time.day(oh.utils.parsedate(d[item]));
+			return oh.utils.parsedate(d[item]).getHours() || na;
+		} else {
+			return na;
 		}
 	}
 }
@@ -69,13 +76,7 @@ oh.utils.bin = function(binwidth){
 	}
 }
 
-oh.utils.gethour = function(item){
-	return function(d){
-		if(d[item] && d[item] != "NOT_DISPLAYED"){
-			return oh.utils.parsedate(d[item]).getHours();
-		}
-	}
-}
+
 
 oh.utils.state = function(mycampaign, myresponse){
 	if(!mycampaign){

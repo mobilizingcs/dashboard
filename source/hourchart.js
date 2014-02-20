@@ -6,9 +6,10 @@
 		var dimname = item + "_hour"
 		var title = options.title || "Date"
 		var chartid = "hour-chart";
+		var na = options.na || undefined;
 		
 		//create dimension and group
-    	dashboard.dim[dimname] = dashboard.data.dimension(oh.utils.gethour(item));
+    	dashboard.dim[dimname] = dashboard.data.dimension(oh.utils.gethour(item, na));
     	dashboard.groups[dimname] = dashboard.dim[dimname].group(Math.floor);  					
 		
 		var mydiv = $("<div/>").addClass("chart").attr("id", chartid);

@@ -8,9 +8,10 @@
 		var title = options.title || "pie chart"
 		var label = options.label || {};
 		var chartid = "pie-" + Math.random().toString(36).substring(7);
+		var na = options.na || undefined;
 		
 		//create dimension and group
-    	dashboard.dim[item] = dashboard.data.dimension(oh.utils.get(item));
+    	dashboard.dim[item] = dashboard.data.dimension(oh.utils.get(item, na));
     	dashboard.groups[item] = dashboard.dim[item].group();  		
 		
     	//create dom elements
