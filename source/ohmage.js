@@ -46,7 +46,12 @@ oh.utils.get = function(item, na){
 
 oh.utils.getnum = function(item, na){
 	return function(d){
-		return parseFloat(d[item]) || na;
+		var val = parseFloat(d[item]);
+		if(val === 0) {
+			return 0;
+		} else {
+			return val || na;
+		}
 	}
 }
 
