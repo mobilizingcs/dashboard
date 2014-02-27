@@ -68,21 +68,21 @@
 	],
 	"barcharts" : [
 				{
-						"title" : "# Recycle Bin",
+						"title" : "# Recycle Bins",
 						"domain" : [-1 ,10],
 						"na" : -1,
 						"binwidth" : 1,
 						"item" : "howManyRecycle"
 				},
 				{
-						"title" : "# Trash Bin",
+						"title" : "# Trash Bins",
 						"domain" : [-1, 10],
 						"na" : -1,
 						"binwidth" : 1,						
 						"item" : "howManyLandfill"
 				},
 				{
-						"title" : "# Compost Bin",
+						"title" : "# Compost Bins",
 						"domain" : [-1, 10],
 						"na" : -1,
 						"binwidth" : 1,						
