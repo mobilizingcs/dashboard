@@ -28,7 +28,7 @@
 			"item" : "activity:label"
 		},
 		{
-			"title" : "Where did you put this?",
+			"title" : "Where did you put it?",
 			"item" : "receptacle:label"
 		},
 		{
@@ -38,13 +38,13 @@
 	],
 	"datecharts" : [
 		{
-			"title" : "Response Date",
+			"title" : "Date",
 			"item" : "context:timestamp"
 		}	
 	],
 	"hourcharts" : [
 		{
-			"title" : "Response Time",
+			"title" : "Hour of Day",
 			"item" : "context:timestamp"
 		}	
 	],
@@ -62,27 +62,27 @@
 						"item" : "activity:label"
 				},
 				{
-						"title" : "Where did you put this?",
+						"title" : "Where did you put it?",
 						"item" : "receptacle:label"
 				}
 	],
 	"barcharts" : [
 				{
-						"title" : "Recycle Bin Count",
+						"title" : "# Recycle Bin",
 						"domain" : [-1 ,10],
 						"na" : -1,
 						"binwidth" : 1,
 						"item" : "howManyRecycle"
 				},
 				{
-						"title" : "Landfill Bin Count",
+						"title" : "# Trash Bin",
 						"domain" : [-1, 10],
 						"na" : -1,
 						"binwidth" : 1,						
 						"item" : "howManyLandfill"
 				},
 				{
-						"title" : "Compost Bin Count",
+						"title" : "# Compost Bin",
 						"domain" : [-1, 10],
 						"na" : -1,
 						"binwidth" : 1,						
