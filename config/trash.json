@@ -1,50 +1,99 @@
 {
 	"title" : "Trash Dashboard",
 	"data" : {
-		"filter" : "trash|science1|science2",
-		"url" : "{{ oh.getcsvurl }}"			
+		"filter" : ":trash:|trashintro",
+		"url" : "{{ oh.getcsvurl }}"		
 	},
-	"item_main" : "trashName",	
+	"item_main" : "whatTrash",	
 	"photo" : {
-		"item" : "trashPhoto",
-		"thumb" : "/app/image/read?client=dashboard&size=icon&id={{ trashPhoto }}",
-		"image" : "/app/image/read?client=dashboard&id={{ trashPhoto }}"		
-	},	
+		"item" : "photo",
+		"thumb" : "/app/image/read?client=dashboard&size=icon&id={{ photo }}",
+		"image" : "/app/image/read?client=dashboard&id={{ photo }}"		
+	},
 	"modal": [ 
 		{
-			"title" : "Trash Name?",
-			"item" : "trashName"
+			"title" : "What?",
+			"item" : "whatTrash"
 		},
 		{
-			"title" : "Trash type?",
-			"item" : "trashType:label"
-		}
+			"title" : "What type?",
+			"item" : "type:label"
+		},
+		{
+			"title" : "What activity?",
+			"item" : "activity:label"
+		},
+		{
+			"title" : "Where did you put it?",
+			"item" : "receptacle:label"
+		},
+		{
+			"title" : "Recycle Bin Count",
+			"item" : "howManyRecycle" 
+		} 
 	],
 	"datecharts" : [
 		{
-			"title" : "Response Date",
+			"title" : "Date",
 			"item" : "context:timestamp"
 		}	
 	],
 	"hourcharts" : [
 		{
-			"title" : "Response Time",
+			"title" : "Hour of Day",
 			"item" : "context:timestamp"
 		}	
 	],
 	"piecharts" : [
 		{
-			"title" : "Trash Type",
-			"item" : "trashType:label"
-		}		
+			"title" : "What type?",
+			"item" : "type:label"
+		},
+				{
+						"title" : "What type?",
+						"item" : "type:label"
+				},
+                                {
+                                                "title" : "Where found?",
+                                                "item" : "where:label"
+                                },
+				{
+						"title" : "What activity?",
+						"item" : "activity:label"
+				},
+				{
+						"title" : "Where did you put it?",
+						"item" : "receptacle:label"
+				}
 	],
 	"barcharts" : [
-		
+				{
+						"title" : "# Recycle Bins",
+						"domain" : [-1 ,10],
+						"na" : -1,
+						"binwidth" : 1,
+						"item" : "numberRecycleBins"
+				},
+				{
+						"title" : "# Trash Bins",
+						"domain" : [-1, 10],
+						"na" : -1,
+						"binwidth" : 1,						
+						"item" : "numberTrashBins"
+				},
+				{
+						"title" : "# Compost Bins",
+						"domain" : [-1, 10],
+						"na" : -1,
+						"binwidth" : 1,						
+						"item" : "numberCompostBins"
+				}
 	], 
 	"wordclouds" : [
 		{
-			"title" : "Trash Name",
-			"item" : "trashName"
+			"title" : "What Trash?",
+			"binwidth" : 20,
+			"item" : "whatTrash"
 		}
 	],
 	"dropdowns" : [
@@ -52,13 +101,12 @@
 			"title" : "User",
 			"item" : "user:id"
 		}
-	],	
+	],
 	"maps" : [
 		{
 			"item" : {
 				"lat" : "context:location:latitude", 
-				"lng" : "context:location:longitude",
-				"geo" : "neighborhood"
+				"lng" : "context:location:longitude"
 			},
 			"center" : [34.0522222, -118.2427778],
 			"zoom" : 9,
@@ -76,17 +124,20 @@
 			"tilelayers": [
 				{
 					"title" : "Standard",
-					"url" : "http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/1/256/{z}/{x}/{y}.png"
+					"key" : "BC9A493B41014CAABB98F0471D759707",
+					"styleId" : 1
 				},
 				{
 					"title" : "Road", 
-					"url" : "http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/997/256/{z}/{x}/{y}.png"
+					"key" : "BC9A493B41014CAABB98F0471D759707",
+					"styleId" : 997
 				},
 				{
-					"title" : "Grayish",
-					"url" : "http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/22677/256/{z}/{x}/{y}.png",
+					"title" : "Minimal",
+					"key" : "BC9A493B41014CAABB98F0471D759707",
+					"styleId" : 22677,
 					"default" : true
-				}			
+				}		
 			] 
 		}
 	]
