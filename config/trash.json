@@ -45,16 +45,12 @@
 		}	
 	],
 	"piecharts" : [
-		{
-			"title" : "What type?",
-			"item" : "type:label"
-		},
 				{
 						"title" : "What type?",
 						"item" : "type:label"
 				},
                                 {
-                                                "title" : "Where found?",
+                                                "title" : "Where?",
                                                 "item" : "where:label"
                                 },
 				{
@@ -62,7 +58,7 @@
 						"item" : "activity:label"
 				},
 				{
-						"title" : "Where did you put it?",
+						"title" : "What bin type?",
 						"item" : "receptacle:label"
 				}
 	],
