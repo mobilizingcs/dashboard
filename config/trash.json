@@ -1,7 +1,7 @@
 {
 	"title" : "Trash Dashboard",
 	"data" : {
-		"filter" : ":trash:|trashintro",
+		"filter" : ":trash:|trashintro|:demo_trash:",
 		"url" : "{{ oh.getcsvurl }}"		
 	},
 	"item_main" : "whatTrash",	
