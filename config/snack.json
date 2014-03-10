@@ -128,17 +128,17 @@
 			"tilelayers": [
 				{
 					"title" : "Standard",
-					"key" : "BC9A493B41014CAABB98F0471D759707",
+					"key" : "2d69a170ad5540f981628a272225958a",
 					"styleId" : 1
 				},
 				{
 					"title" : "Road", 
-					"key" : "BC9A493B41014CAABB98F0471D759707",
+					"key" : "2d69a170ad5540f981628a272225958a",
 					"styleId" : 997
 				},
 				{
 					"title" : "Minimal",
-					"key" : "BC9A493B41014CAABB98F0471D759707",
+					"key" : "2d69a170ad5540f981628a272225958a",
 					"styleId" : 22677,
 					"default" : true
 				}		
