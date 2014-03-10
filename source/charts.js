@@ -102,6 +102,16 @@ function initcharts(){
 				dashboard.photopanel.showme();
 			}
 			
+			//avoids placing #histpanel off the screen. temp hack for #8 --SN
+			if(panel == "histpanel") {
+			  if ($('body').width() < 1100 ) {
+ 			    $('#histpanel').css({
+    			     "left": "755px",
+      			     "bottom": "140px" 
+     			    });
+  			  }
+			}
+			
 			//reset and show both current panel and draggable subpanels
 			$("#" + panel + ".ui-resizable").width("").height("")
 			$("#" + panel + ".ui-draggable").css({ top: "", bottom: "", left: "", right: ""});
