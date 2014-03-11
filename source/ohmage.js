@@ -162,6 +162,49 @@ oh.call = function(path, data, datafun){
 	
 	return(myrequest)
 }
+oh.call.xml = function(path, data, datafun){
+
+        function processError(errors){
+                if(errors[0].code && errors[0].code == "0200"){
+                        var pattern = /(is unknown)|(authentication token)|(not provided)/i;
+                        if(!errors[0].text.match(pattern)) {
+                                alert(errors[0].text);
+                        }
+                        if(!/login.html$/.test(window.location.pathname)){
+                                oh.sendtologin();
+                        }
+                } else {
+                        alert(errors[0].text)
+                }
+        }
+
+        //input processing
+        var data = data ? data : {};
+
+        //default parameter
+        data.client = "dashboard"
+
+        var myrequest = $.ajax({
+                type: "POST",
+                url : "/app" + path,
+                data: data,
+                dataType: "text",
+                xhrFields: {
+                        withCredentials: true
+                }
+        }).done(function(rsptxt) {
+                if(!rsptxt || rsptxt == ""){
+                        alert("Undefined error.")
+                        return false;
+                }
+                //just return whatever response, since the server doesn't use codes when asking for xml
+                var response = rsptxt;
+                if(datafun) datafun(response);
+
+        }).error(function(){alert("Ohmage returned an undefined error.")});
+
+        return(myrequest)
+}
 
 oh.login = function(user, password, cb){
 	var req = oh.call("/user/auth_token", { 
@@ -191,6 +234,16 @@ oh.campaign_read = function(cb){
 		cb(arg)
 	});
 	return req;
+};
+oh.campaign_read_xml = function(campaign, cb){
+        var req = oh.call.xml("/campaign/read", {
+                output_format : "xml",
+                campaign_urn_list : campaign
+        }, function(res){
+                if(!cb) return;
+                cb(res)
+        });
+        return req;
 };
 
 
