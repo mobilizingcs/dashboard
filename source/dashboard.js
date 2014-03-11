@@ -7,31 +7,33 @@ $(document).ready(function() {
 	
 	//helper functions	
 	function start(){
-		readconfig(init);
+		general(init);
 	};
 	
-	
+	//generilized config creation	
+
 	//reads configuration with handler
-	function readconfig(next){
-		$.ajax({
-			url: "config.json",
-			dataType: "json"
-		})
-		.success(function(data) {
-			dashboard.config = data;
-			if(next) next();
-		})
-		.fail(function(err) { 
-			alert("error loading config.json"); 
-			dashboard.message(err) 
-		});
-	};
+//	function readconfig(next){
+//		$.ajax({
+//			url: "config.json",
+//			dataType: "json"
+//		})
+//		.success(function(data) {
+//			dashboard.config = data;
+//			if(next) next();
+//		})
+//		.fail(function(err) { 
+//			alert("error loading config.json"); 
+//			dashboard.message(err) 
+//		});
+//	};
 	
 	
 	//initiates dashboard
 	function init(){
 		//spinner
 		$("#loadinganimation").show();
+
 
 		//this function gets the csv path. 
 		//Note that in the case of ohmage, it automatically checks login status.
