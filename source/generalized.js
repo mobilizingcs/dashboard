@@ -54,6 +54,15 @@ function general(next){
         configObject.wordclouds = [];
         configObject.barcharts = [];
 	configObject.modal = [];
+                //limit the number of piecharts, photocharts, wordclouds and numbers
+                limitPie = 4;
+                countPie = 0;
+                limitPhoto = 1;
+                countPhoto = 0;
+                limitClouds = 2
+                countClouds = 0;
+                limitBar = 2;
+                countBar = 0;
         $(campaign_xml).find("prompt").each(function(){
                 id = $(this).find('id').text();
                 promptType = $(this).find('promptType').text();
@@ -67,33 +76,45 @@ function general(next){
 				"item" : id,
 				"title" : displayLabel
 				}); 
+		//generate some items based on prompts
                 switch (promptType)
                 {
                 case "photo":
+		 if(countPhoto < limitPhoto){
                  configObject.photo = {
                                         "item": id,
                                         "thumb" : "/app/image/read?client=dashboard&size=icon&id={{"+id+"}}",
                                         "image" : "/app/image/read?client=dashboard&id={{"+id+"}}"
                                       }
+		 countPhoto++;
+		 }
                  break;
                 case "single_choice":
+		 if(countPie < limitPie){
                  configObject.piecharts.push({
                                         "item": id+":label",
                                         "title": displayLabel
                                         });
+		 countPie++;
+		 }
                  break;
                 case "text":
+		 if(countClouds < limitClouds){
                  configObject.wordclouds.push({
                                         "item": id,
                                         "title": displayLabel
                                         });
+		 countClouds++;
+		 }
                  break;
 		case"number":
+		 if(countBar < limitBar){
 		 if($(this).find("skippable").text()==="false" && $(this).find('condition').length === 0){
 		 configObject.barcharts.push({
 						"item":id,
 						"title":displayLabel
 						});
+		 countBar++;
 		 break;
 		 }else{
         	  property = [];
@@ -102,8 +123,11 @@ function general(next){
         	  });     
         	  binwidth = Math.ceil(eval((property["max"] - property["min"])/10))
         	  configObject.barcharts.push({item:id,title:displayLabel,"na":-1,"domain" : [-1, property["max"]], "binwidth" : binwidth});      
+		 countBar++;
         	 break;
 		 }
+		 }
+		 break;
 		default:
 		 console.log("Sorry I dont support "+id+", with type: "+promptType);
 		}
