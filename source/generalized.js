@@ -1,4 +1,4 @@
-
+function general(next){
 	//find out what campaign we are using
 	campaign = window.location.hash.substr(1);
 
@@ -54,12 +54,15 @@
         configObject.wordclouds = [];
         configObject.barcharts = [];
 	configObject.modal = [];
-	//change this, hack for snack to test
-	configObject.item_main = "WhatSnack";
         $(campaign_xml).find("prompt").each(function(){
                 id = $(this).find('id').text();
                 promptType = $(this).find('promptType').text();
-                displayLabel = $(this).find('displayLabel').text();
+		if($(this).find('displayLabel').text().length > 20){
+	          displayLabel = $(this).find('displayLabel').text().slice(0,20)+"...";
+		}else{
+		  displayLabel = $(this).find('displayLabel').text();
+		}
+
 		configObject.modal.push({
 				"item" : id,
 				"title" : displayLabel
@@ -85,21 +88,25 @@
                                         "title": displayLabel
                                         });
                  break;
-                case "number":
-		 if ($(this).find('skippable').text() === "false" && $(this).find('condition').text().isEmpty){
-                 configObject.barcharts.push({
-                                        "item": id,
-                                        "title": displayLabel
-                                        });
-                 break;
-		 }
-		 console.log("Sorry I dont support "+id+", with type: "+promptType);
+		case"number":
+		 if($(this).find("skippable").text()==="false" && $(this).find('condition').length === 0){
+		 configObject.barcharts.push({
+						"item":id,
+						"title":displayLabel
+						});
 		 break;
-		default: 
+		 }else{
+        	  property = [];
+        	  $(this).children('properties').children('property').each(function(){
+                  property[$(this).children('key').text()] = $(this).children('label').text();
+        	  });     
+        	  binwidth = Math.ceil(eval((property["max"] - property["min"])/10))
+        	  configObject.barcharts.push({item:id,title:displayLabel,"na":-1,"domain" : [-1, property["max"]], "binwidth" : binwidth});      
+        	 break;
+		 }
+		default:
 		 console.log("Sorry I dont support "+id+", with type: "+promptType);
-
-                }
-
+		}
         });
 	dashboard.config = configObject;
 	if(next) next();
