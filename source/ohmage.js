@@ -197,9 +197,18 @@ oh.call.xml = function(path, data, datafun){
                         alert("Undefined error.")
                         return false;
                 }
-                //just return whatever response, since the server doesn't use codes when asking for xml
-                var response = rsptxt;
-                if(datafun) datafun(response);
+                //interestingly, ohmage returns json if error, and *only* xml if success
+		try
+		{
+		  var response = $.parseXML(rsptxt)
+		  if(datafun) datafun(response);		  
+		}
+		catch(err)
+		{
+		  var response = jQuery.parseJSON(rsptxt);
+                  processError(response.errors)
+                  return false;
+                 }
 
         }).error(function(){alert("Ohmage returned an undefined error.")});
 

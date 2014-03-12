@@ -3,7 +3,7 @@ function general(next){
 	campaign = window.location.hash.substr(1);
 
         oh.campaign_read_xml(campaign, function(xml){
-        campaign_xml = $.parseXML( xml )
+        campaign_xml = xml;
         //initialize the config.json general file
         var configObject = {};
         configObject.title = "Dashboard";
@@ -104,6 +104,10 @@ function general(next){
                                         "item": id,
                                         "title": displayLabel
                                         });
+		   //make the first text prompt the item_main
+		   if(countClouds === 0){
+		    configObject.item_main = id;
+		   }
 		 countClouds++;
 		 }
                  break;

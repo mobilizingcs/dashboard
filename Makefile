@@ -34,7 +34,7 @@ www: clean
 
 	#compile javascript
 	mkdir -p ${OUT}/js
-	cd source; uglifyjs dashboard.js debug.js charts.js ohmage.js choropleth.js photopanel.js piechart.js barchart.js datechart.js hourchart.js wordcloud.js responsemodal.js filtercount.js dropdown.js help.js generalized.js -o ${OUT}/js/snack.min.js
+	cd source; uglifyjs dashboard.js debug.js charts.js ohmage.js choropleth.js photopanel.js piechart.js barchart.js datechart.js hourchart.js wordcloud.js responsemodal.js filtercount.js dropdown.js help.js generalized.js editmodal.js -o ${OUT}/js/snack.min.js
 	
 	#demo data
 	if [ -e "data/$(CAMPAIGN).csv" ]; then cp data/$(CAMPAIGN).csv ${OUT}/data/$(CAMPAIGN).csv; fi
