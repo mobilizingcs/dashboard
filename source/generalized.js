@@ -66,8 +66,8 @@ function general(next){
         $(campaign_xml).find("prompt").each(function(){
                 id = $(this).find('id').text();
                 promptType = $(this).find('promptType').text();
-		if($(this).find('displayLabel').text().length > 20){
-	          displayLabel = $(this).find('displayLabel').text().slice(0,20)+"...";
+		if($(this).find('displayLabel').text().length > 15){
+	          displayLabel = $(this).find('displayLabel').text().slice(0,15)+"...";
 		}else{
 		  displayLabel = $(this).find('displayLabel').text();
 		}

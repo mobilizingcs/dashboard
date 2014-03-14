@@ -12,7 +12,9 @@ html(lang="en")
     
     //bootstrap    
     script(src="lib/bootstrap/js/bootstrap.min.js")  
+    script(src="lib/bootstrap/js/bootstrap-sortable.js")  
     link(rel='stylesheet', href='lib/bootstrap/css/bootstrap.min.css')      
+    link(rel='stylesheet', href='lib/bootstrap/css/bootstrap-sortable.css')      
     
     //application   
     script(src="js/ohmage.js")     
@@ -22,7 +24,12 @@ html(lang="en")
   body
    div#choosecampaign.well
       h3 Select a campaign
-      ul#campaignlist.nav.nav-pills.nav-stacked
+      table#campaigntable.table.table-striped.table-hover.sortable
+        thead
+          tr
+            th(data-defaultsort="asc") Name
+            th URN
+            td  
+        tbody
       div#loadinganimation
         img(src="images/spinner.gif", alt="loading")            
-        
