@@ -239,7 +239,7 @@ oh.campaign_read = function(cb){
 		output_format : "short"
 	}, function(res){
 		if(!cb) return;
-		var arg = (res.metadata && res.metadata.items) ? res.metadata.items : null;
+		var arg = (res.data ) ? res.data : null;
 		cb(arg)
 	});
 	return req;
@@ -253,6 +253,16 @@ oh.campaign_read_xml = function(campaign, cb){
                 cb(res)
         });
         return req;
+};
+oh.campaign_read.meta = function(cb){
+	var req = oh.call("/campaign/read", {
+		output_format : "short"
+	}, function(res){
+		if(!cb) return;
+		var arg = (res.metadata && res.metadata.items) ? res.metadata.items : null;
+		cb(arg)
+	});
+	return req;
 };
 
 
@@ -358,7 +368,7 @@ oh.getcsvurl = function(){
 	//the following happens async (unfortunately)
 	//checks if we are logged in and if we have access to the campaign.
 	oh.user.whoami(function(){
-		oh.campaign_read(function(campaigns){
+		oh.campaign_read.meta(function(campaigns){
 			//from here we can assume we are authenticated to ohmage.
 			if($.inArray(campaign_urn, campaigns) < 0){
 				alert("No such campaign: " + campaign_urn); 

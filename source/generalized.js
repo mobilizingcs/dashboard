@@ -1,7 +1,9 @@
 function general(next){
 	//find out what campaign we are using
 	campaign = window.location.hash.substr(1);
+	generateConfig(campaign);
 
+function generateConfig(campaign){
         oh.campaign_read_xml(campaign, function(xml){
         campaign_xml = xml;
         //initialize the config.json general file
@@ -139,4 +141,5 @@ function general(next){
 	dashboard.config = configObject;
 	if(next) next();
         });
+} 
 }

@@ -14,9 +14,10 @@ www: clean
 	#create output dir
 	mkdir -p ${OUT}/css
 	mkdir -p ${OUT}/data
+	mkdir -p ${OUT}/config
 		
 	#copy config
-	cp config/$(CAMPAIGN).json ${OUT}/config.json
+	cp config/*.json ${OUT}/config
 
 	#compile html
 	jade --pretty views --out ${OUT}
