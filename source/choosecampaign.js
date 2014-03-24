@@ -10,7 +10,7 @@ $(document).ready(function() {
                       allcampaigns.push(i);
                       var mytr = $("<tr />").appendTo("#campaigntable tbody");
                       td(o.name).appendTo(mytr);
-                      td(i).appendTo(mytr);
+                      td(i).appendTo(mytr).hide();
                       var mybtn = $('<a class="btn btn-primary">Launch</a>').attr("href", nexturl+ "#"+i);
                       $("<td>").append(mybtn).appendTo(mytr);
                 });
@@ -20,6 +20,13 @@ $(document).ready(function() {
 			alert('No "' + filter + '" campaigns found for the current ohmage user.')
 		}
 	});
+
+//show or hide urn on demand
+$('#showUrn').click(function () {
+    $("#urnHeader").toggle(this.checked);
+    $('td[data-value^="urn"]').toggle(this.checked);
+});
+
 });
 
 

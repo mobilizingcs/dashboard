@@ -22,13 +22,16 @@ html(lang="en")
     link(rel='stylesheet', href='css/choosecampaign.css')   
 
   body
-   div#choosecampaign.well
+   div#choosecampaign
       h3 Select a campaign
+      p(align="right")
+        input(type="checkbox", id="showUrn") 
+        span  Show campaign urn 
       table#campaigntable.table.table-striped.table-hover.sortable
         thead
           tr
             th(data-defaultsort="asc") Name
-            th URN
+            th(style="display:none", id="urnHeader") URN
             td  
         tbody
       div#loadinganimation

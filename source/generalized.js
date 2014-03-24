@@ -1,13 +1,51 @@
 function general(next){
-	//find out what campaign we are using
-	campaign = window.location.hash.substr(1);
-	generateConfig(campaign);
+//find out what campaign we are using
+campaign = window.location.hash.substr(1);
+configObject={};
 
+//test for known campaign types and loads config files
+if ( /advertisement|:media/i.test(campaign) ){
+        console.log("loading existing config: media");
+        readConfig("media");
+} else if ( /:trash$|trashintro|:demo_trash:/i.test(campaign) ) {
+        console.log("loading existing config: trash");
+        readConfig("trash");
+} else if ( /:snack/i.test(campaign) ) {
+        console.log("loading existing config: snack");
+        readConfig("snack");
+} else if ( /:litter/i.test(campaign) ) {
+        console.log("loading existing config: litter");
+        readConfig("litter");
+} else if ( /:nutrition/i.test(campaign) ) {
+        console.log("loading existing config: nutrition");
+        readConfig("nutrition");
+} else {
+        console.log("I'm generating a config now...");
+        generateConfig(campaign);
+}
+
+//function reads from existing config files, generates if failure occurs
+function readConfig(campaignType){
+        $.ajax({
+                url: "config/"+campaignType+".json",
+                dataType: "json"
+        })      
+        .success(function(data) {
+                dashboard.config = data; 
+                if(next) next(); 
+        })      
+        .fail(function(err) { 
+                console.log("couldn't load config file! generating one, sorry!"); 
+                generateConfig(campaign); 
+        });     
+};   
+
+
+//function reads xml and generates a basic config for the dashboard
 function generateConfig(campaign){
         oh.campaign_read_xml(campaign, function(xml){
         campaign_xml = xml;
         //initialize the config.json general file
-        var configObject = {};
         configObject.title = "Dashboard";
         configObject.data = {};
         configObject.data.filter = "";
