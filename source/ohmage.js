@@ -264,6 +264,21 @@ oh.campaign_read.meta = function(cb){
 	});
 	return req;
 };
+oh.survey_response_read_meta = function(campaign, cb){
+        var req = oh.call("/survey_response/read", {
+                output_format : "json-rows",
+                campaign_urn: campaign,
+                collapse: "true",
+                user_list: "urn:ohmage:special:all",
+                survey_id_list: "urn:ohmage:special:all",
+                column_list: "urn:ohmage:survey:privacy_state"
+        }, function(res){
+                if(!cb) return;
+                var arg = res;
+                cb(arg)
+        });
+        return req;
+};
 
 
 oh.utils.parsecsv = function(string){

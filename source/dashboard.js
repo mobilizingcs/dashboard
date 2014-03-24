@@ -7,7 +7,7 @@ $(document).ready(function() {
 	
 	//helper functions	
 	function start(){
-		general(init);
+		generalized(init);
 	};
 	
 	//generilized config creation	

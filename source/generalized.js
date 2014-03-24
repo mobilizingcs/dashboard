@@ -1,4 +1,4 @@
-function general(next){
+function generalized(next){
 //find out what campaign we are using
 campaign = window.location.hash.substr(1);
 configObject={};
