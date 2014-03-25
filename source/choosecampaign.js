@@ -7,7 +7,7 @@ $(document).ready(function() {
                 //loop through all returned campaigns, creating a table with name,urn
                 $.each(campaigns, function(i, o){
                       allcampaigns.push(i);
-                      var mytr = $("<tr />").appendTo("#campaigntable tbody");
+                      var mytr = $("<tr class='searchable'/>").appendTo("#campaigntable tbody");
                       td(o.name).appendTo(mytr);
                       td(i).appendTo(mytr).hide();
                       var mybtn = $('<a class="btn btn-primary">Launch</a>').attr("href", nexturl+ "#"+i);
@@ -43,6 +43,9 @@ $(document).ready(function() {
                 if(allcampaigns.length == 0){
                         alert('No "' + filter + '" campaigns found for the current ohmage user.')
                 }
+                if(allcampaigns.length > 10){
+                        $("#filter").show();
+                }
                 $("#loadinganimation").hide();
                 $("#campaigntable").show();             
         });
@@ -52,6 +55,21 @@ $('#showUrn').click(function () {
     $("#urnHeader").toggle(this.checked);
     $('td[data-value^="urn"]').toggle(this.checked);
 });
+
+//filtering the list
+    $("#filter").keyup(function(){
+        var filter = $(this).val(), count = 0;
+        $("tr[class='searchable']").each(function(){
+            if ($(this).text().search(new RegExp(filter, "i")) < 0) {
+                $(this).fadeOut();
+            } else {
+                $(this).show();
+                count++;
+            }
+        });
+        var numberItems = count;
+        $("#filter-count").text("Matches: "+count);
+    });
 
 });
 

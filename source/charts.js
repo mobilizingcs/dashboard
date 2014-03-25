@@ -84,9 +84,6 @@ function initcharts(){
 	//init modal
 	dashboard.modal = $("#responsemodal").responsemodal()
 
-	//init edit modal
-	dashboard.editmodal = $("#editmodal").editmodal()
-	
 	//init thumbnail window
     dashboard.photopanel = $("#photopanel").photopanel(dashboard.config.photo);
 

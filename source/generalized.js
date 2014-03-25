@@ -166,6 +166,7 @@ function generateConfig(campaign){
                   property[$(this).children('key').text()] = $(this).children('label').text();
         	  });     
         	  binwidth = Math.ceil(eval((property["max"] - property["min"])/10))
+		  //edge case this doesn't account for: min<0 and prompt skippable|not_displayed
         	  configObject.barcharts.push({item:id,title:displayLabel,"na":-1,"domain" : [-1, property["max"]], "binwidth" : binwidth});      
 		 countBar++;
         	 break;

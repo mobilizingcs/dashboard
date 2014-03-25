@@ -26,7 +26,9 @@ html(lang="en")
       h3 Select a campaign
       p(align="right")
         input(type="checkbox", id="showUrn") 
-        span  Show campaign urn 
+        span  Show campaign urn    
+        input(type="text", style="display:none", class="text-input", placeholder="search..." id="filter")
+
       table#campaigntable.table.table-striped.table-hover.sortable
         thead
           tr
