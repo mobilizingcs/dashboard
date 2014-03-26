@@ -19,7 +19,7 @@ if ( /\/publicdashboard/i.test(window.location.pathname) ){
         $.each(publicCampaigns, function(i,v){
                 var mytr = $("<tr class='searchable'/>").appendTo("#campaigntable tbody");
                 td(v.name).appendTo(mytr);
-		td(v.urn).appendTo(mytr);
+		td(v.urn).appendTo(mytr).hide();
                 td(v.count).appendTo(mytr);
                 td(v.count).appendTo(mytr);
                 var mybtn = $('<a class="btn btn-primary">Launch</a>').attr("href", nexturl+ "#" + v.urn);
