@@ -10,25 +10,6 @@ $(document).ready(function() {
 		generalized(init);
 	};
 	
-	//generilized config creation	
-
-	//reads configuration with handler
-//	function readconfig(next){
-//		$.ajax({
-//			url: "config.json",
-//			dataType: "json"
-//		})
-//		.success(function(data) {
-//			dashboard.config = data;
-//			if(next) next();
-//		})
-//		.fail(function(err) { 
-//			alert("error loading config.json"); 
-//			dashboard.message(err) 
-//		});
-//	};
-	
-	
 	//initiates dashboard
 	function init(){
 		//spinner

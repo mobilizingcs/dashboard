@@ -1,10 +1,14 @@
 function generalized(next){
 //find out what campaign we are using
 campaign = window.location.hash.substr(1);
+console.log(campaign);
 configObject={};
 
 //test for known campaign types and loads config files
-if ( /:public:snack/i.test(campaign) ){
+if ( campaign === "") {
+	//check for empty campaign and redirect to pick one
+	window.location = "choosecampaign.html";
+} else if ( /:public:snack/i.test(campaign) ){
         console.log("loading public config: snackdemo");
         readConfig("snackdemo");
 } else if ( /:public:media/i.test(campaign) ){

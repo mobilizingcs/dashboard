@@ -1,4 +1,32 @@
 $(document).ready(function() {
+//don't generate a list *only* if we are at /publicdashboard. this is a bit quirky.
+if ( /\/publicdashboard/i.test(window.location.pathname) ){
+        var publicCampaigns = {
+                        "snack" : {
+                                "urn" : "urn:public:snack",
+                                "name" : "Snack",
+                                "count" : 1709
+                        },      
+                        "media" : {
+                                "urn" : "urn:public:media",
+                                "name" : "Media",
+                                "count" : 1025
+                        }
+        }
+
+        $("#filter").hide();
+        var nexturl = getURLParameter("next") || ".";
+        $.each(publicCampaigns, function(i,v){
+                var mytr = $("<tr class='searchable'/>").appendTo("#campaigntable tbody");
+                td(v.name).appendTo(mytr);
+		td(v.urn).appendTo(mytr);
+                td(v.count).appendTo(mytr);
+                td(v.count).appendTo(mytr);
+                var mybtn = $('<a class="btn btn-primary">Launch</a>').attr("href", nexturl+ "#" + v.urn);
+                $("<td>").append(mybtn).appendTo(mytr);
+        });
+        $("#loadinganimation").hide();
+} else {
         oh.campaign_read(function(campaigns){
         $("#campaigntable").hide();
 
@@ -49,6 +77,7 @@ $(document).ready(function() {
                 $("#loadinganimation").hide();
                 $("#campaigntable").show();             
         });
+}
 
 //show or hide urn on demand
 $('#showUrn').click(function () {
