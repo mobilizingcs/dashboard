@@ -356,12 +356,6 @@ oh.getcsvurl = function(){
 	var pattern = new RegExp(filter, "i");	
 	var campaign_urn = oh.utils.state()[0];	
 	
-	//if the current campaign is invalid, pick a new one
-	if(!campaign_urn || !pattern.test(campaign_urn)){
-		window.location = "choosecampaign.html?filter=" + filter;
-		oh.utils.error("Invalid campaign. Redirecting page.");
-	}	
-	
 	//else continue
 	var params = {
 	    campaign_urn: campaign_urn,
