@@ -4,7 +4,13 @@ campaign = window.location.hash.substr(1);
 configObject={};
 
 //test for known campaign types and loads config files
-if ( /advertisement|:media/i.test(campaign) ){
+if ( /:public:snack/i.test(campaign) ){
+        console.log("loading public config: snackdemo");
+        readConfig("snackdemo");
+} else if ( /:public:media/i.test(campaign) ){
+        console.log("loading public config: mediademo");
+        readConfig("mediademo");
+} else if ( /advertisement|:media/i.test(campaign) ){
         console.log("loading existing config: media");
         readConfig("media");
 } else if ( /:trash$|trashintro|:demo_trash:/i.test(campaign) ) {
