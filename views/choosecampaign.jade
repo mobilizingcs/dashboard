@@ -24,10 +24,11 @@ html(lang="en")
   body
    div#choosecampaign
       h3 Select a campaign
-      p(align="right")
-        input(type="checkbox", id="showUrn") 
-        span  Show campaign urn    
+      div(style="float:left")
         input(type="text", style="display:none", class="text-input", placeholder="search..." id="filter")
+      div(style="float:right")
+        input(type="checkbox", id="showUrn") 
+        span  Show campaign urn
 
       table#campaigntable.table.table-striped.table-hover.sortable
         thead
