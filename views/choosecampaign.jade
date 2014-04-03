@@ -25,7 +25,8 @@ html(lang="en")
    div#choosecampaign
       h3 Select a campaign
       div(style="float:left")
-        input(type="text", style="display:none", class="text-input", placeholder="search..." id="filter")
+        input(type="text", class="text-input", placeholder="search..." id="filter")
+        a(id="filterReset") Reset
       div(style="float:right")
         input(type="checkbox", id="showUrn") 
         span  Show campaign urn
@@ -39,5 +40,7 @@ html(lang="en")
             th Total Data
             td  
         tbody
+      div#noItems
+        p(style="display:none", class="text-error") No campaigns match your current search
       div#loadinganimation
         img(src="images/spinner.gif", alt="loading")            

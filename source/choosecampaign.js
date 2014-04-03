@@ -15,6 +15,7 @@ if ( /\/publicdashboard/i.test(window.location.pathname) ){
         }
 
         $("#filter").hide();
+	$("#filterReset").hide();
         var nexturl = getURLParameter("next") || ".";
         $.each(publicCampaigns, function(i,v){
                 var mytr = $("<tr class='searchable'/>").appendTo("#campaigntable tbody");
@@ -29,6 +30,14 @@ if ( /\/publicdashboard/i.test(window.location.pathname) ){
 } else {
         oh.campaign_read(function(campaigns){
         $("#campaigntable").hide();
+
+	//if filter url param exists, automatically filter the options, this hacks in a redirect support for the original non-general links
+	var filterParam = getURLParameter("filter");
+	if (filterParam === null || filterParam === "."){
+	  $("#filter").val("");
+	} else {
+          $("#filter").val(filterParam);
+	}
 
                 var allcampaigns = [];
                 var nexturl = getURLParameter("next") || ".";
@@ -68,16 +77,15 @@ if ( /\/publicdashboard/i.test(window.location.pathname) ){
                 });
                 //sort the table by Name
                 $.bootstrapSortable();
+		filterMe.call( $("#filter") );
                 if(allcampaigns.length == 0){
                         alert('No "' + filter + '" campaigns found for the current ohmage user.')
-                }
-                if(allcampaigns.length > 10){
-                        $("#filter").show();
                 }
                 $("#loadinganimation").hide();
                 $("#campaigntable").show();             
         });
 }
+//element change items
 
 //show or hide urn on demand
 $('#showUrn').click(function () {
@@ -85,8 +93,16 @@ $('#showUrn').click(function () {
     $('td[data-value^="urn"]').toggle(this.checked);
 });
 
-//filtering the list
-    $("#filter").keyup(function(){
+//filter the list
+$("#filter").keyup(filterMe);
+
+//clear the filter input
+$('#filterReset').click(function () {
+    $('#filter').val("");
+    filterMe.call( $("#filter") );
+});
+
+function filterMe(){
         var filter = $(this).val(), count = 0;
         $("tr[class='searchable']").each(function(){
             if ($(this).text().search(new RegExp(filter, "i")) < 0) {
@@ -97,8 +113,14 @@ $('#showUrn').click(function () {
             }
         });
         var numberItems = count;
-        $("#filter-count").text("Matches: "+count);
-    });
+        if (numberItems === 0) {
+                $("#noItems").show();
+		$("#noItems p").show();
+        } else {
+                $("#noItems").hide();
+		$("#noItems p").hide();
+        }
+};
 
 });
 
