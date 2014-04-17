@@ -59,7 +59,7 @@ $(document).ready(function() {
 	
 	function hasdata(){
 		if(dashboard.groups.all.value() == 0){
-			alert("Campaign '" + dashboard.campaign_urn + '" has no responses! Try again later (or press F5)')
+			alert("Campaign '" + dashboard.campaign_urn + '" has no responses (or no shared responses)! Please share data and then try again.')
 			$("#loadinganimation").hide();
 			return false;
 		}	
