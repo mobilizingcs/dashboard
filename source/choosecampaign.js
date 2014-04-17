@@ -103,13 +103,17 @@ $('#filterReset').click(function () {
 });
 
 function filterMe(){
-        var filter = $(this).val(), count = 0;
+        var filter = $(this).val().split(" "), count = 0, regex = '';
+        for (var i=0; i < filter.length; i++){
+          regex = regex+"(?=.*"+filter[i]+")"
+        }
         $("tr[class='searchable']").each(function(){
-            if ($(this).text().search(new RegExp(filter, "i")) < 0) {
+            if ($(this).text().search(new RegExp(regex, "i")) < 0) {
                 $(this).fadeOut();
             } else {
                 $(this).show();
                 count++;
+
             }
         });
         var numberItems = count;
