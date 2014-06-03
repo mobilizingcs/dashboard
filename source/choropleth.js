@@ -389,7 +389,7 @@
 	
 	function tilelayer(conf){
 		var mapoptions = conf || {};
-		var url = conf.url || 'http://{s}.tile.cloudmade.com/{key}/{styleId}/256/{z}/{x}/{y}.png';
+		var url = conf.url || 'https://tile.mobilizingcs.org/{z}/{x}/{y}.png';
 		mapoptions.attribution = mapoptions.attribution || false;
 		mapoptions.maxZoom = mapoptions.maxZoom || 18;
 		var mylayer = new L.TileLayer(url, mapoptions);
