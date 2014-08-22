@@ -92,8 +92,9 @@
 		var map;
 		var markerblocker;
 		var info;
-		var getlat = oh.utils.getnum(options.item.lat);
-		var getlng = oh.utils.getnum(options.item.lng);		
+		var na = options.na || [null, null];
+		var getlat = oh.utils.getnum(options.item.lat, na[0]);
+		var getlng = oh.utils.getnum(options.item.lng, na[1]);		
 		var latdim = dashboard.data.dimension(getlat);
 	    var lngdim = dashboard.data.dimension(getlng);	
 		var markerlayer = new L.MarkerClusterGroup(options.clusteroptions || {});

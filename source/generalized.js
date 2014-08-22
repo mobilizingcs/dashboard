@@ -69,6 +69,7 @@ function generateConfig(campaign){
                                 "lng" : "context:location:longitude"
                         },
 			"center" : [34.0522222, -118.2427778],
+            "na" : [33.5,-118.7],
                         "zoom" : 9,
                         "clusteroptions" : {
                                 "spiderfyOnMaxZoom": true,
