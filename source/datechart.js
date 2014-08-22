@@ -9,7 +9,8 @@
 		var na = options.na || undefined;
 		
 		//create dimension and group
-    	dashboard.dim[dimname] = dashboard.data.dimension(oh.utils.getdate(item, na));
+		var getter = oh.utils.getdate(item, na)
+    	dashboard.dim[dimname] = dashboard.data.dimension(getter);
     	dashboard.groups[dimname] = dashboard.dim[dimname].group();  		
 		
 		var mydiv = $("<div/>").addClass("chart").attr("id", chartid);
@@ -27,8 +28,8 @@
 		
 		//calculate date range.
 		//not sure if there is a way to get dimension value directly from dim object?
-		var mindate = oh.utils.getdate(item)(dashboard.dim[dimname].bottom(1)[0]);
-		var maxdate = oh.utils.getdate(item)(dashboard.dim[dimname].top(1)[0]);
+		var mindate = getter(dashboard.dim[dimname].bottom(1)[0]);
+		var maxdate = getter(dashboard.dim[dimname].top(1)[0]);
 		
 		//round to whole days
 		mindate = new Date(mindate.getFullYear(), mindate.getMonth(), mindate.getDate()-2);

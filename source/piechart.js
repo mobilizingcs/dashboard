@@ -11,7 +11,8 @@
 		var na = options.na || undefined;
 		
 		//create dimension and group
-    	dashboard.dim[item] = dashboard.data.dimension(oh.utils.get(item, na));
+		var getter = oh.utils.get(item, na);
+    	dashboard.dim[item] = dashboard.data.dimension(getter);
     	dashboard.groups[item] = dashboard.dim[item].group();  		
 		
     	//create dom elements

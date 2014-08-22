@@ -6,14 +6,15 @@
 		var title = options.title || item;
 		var domain = options.domain || [];
 		var chartid = "bar-" + Math.random().toString(36).substring(7);
-		var na = options.na || undefined;
+		var na = options.na || -1; //must be something numberic
 		
 		//create dimension and group
-    	dashboard.dim[item] = dashboard.data.dimension(oh.utils.getnum(item, na));
+		var getter = oh.utils.getnum(item, na);
+    	dashboard.dim[item] = dashboard.data.dimension(getter);
     	
 		//calculate date range
-		domain[0] = domain[0] || +dashboard.dim[item].bottom(1)[0][item];
-		domain[1] = domain[1] || +dashboard.dim[item].top(1)[0][item];
+		domain[0] = domain[0] || getter(dashboard.dim[item].bottom(1)[0]);
+		domain[1] = domain[1] || getter(dashboard.dim[item].top(1)[0]);
 		
 		//calculate binwidth. We aim to get between 5 and 10 bins.
 		var binwidth = options.binwidth || calcbin(domain);

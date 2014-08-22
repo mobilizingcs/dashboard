@@ -5,7 +5,6 @@
 		var item = options.item;
 		var dimname = item;
 		var title = options.title || "Select"
-		var chartid = "hour-chart";
 		
 		//create dimension and group
     	dashboard.dim[dimname] = dashboard.data.dimension(function(x) {return x[item]});

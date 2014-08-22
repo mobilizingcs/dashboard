@@ -14,7 +14,8 @@
 		var maxwords = options.maxwords || 80;
 		
 		//create dimension
-    	var mydim = dashboard.dim[variable] = dashboard.data.dimension(oh.utils.get(variable));		
+		var getter = oh.utils.get(variable);
+    	var mydim = dashboard.dim[variable] = dashboard.data.dimension(getter);		
 		
 		//construct piece of dom
 		var mydiv = $("<div/>").addClass("wccontainer").addClass("well").css("height", height).appendTo(target);
@@ -94,7 +95,7 @@
 			chartdiv.empty();
 			var alldata = dashboard.dim.main.top(9999);
 			var textarray = alldata.map(function(d){
-				return d[variable];
+				return getter(d)
 			})
 			var wordcounts = wordmap(textarray.join(" "), maxwords);	
 			var words = wordcounts.map(function(d){return {text : d.key, size : d.value}})

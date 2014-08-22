@@ -9,7 +9,8 @@
 		var na = options.na || undefined;
 		
 		//create dimension and group
-    	dashboard.dim[dimname] = dashboard.data.dimension(oh.utils.gethour(item, na));
+		var getter = oh.utils.gethour(item, na)
+    	dashboard.dim[dimname] = dashboard.data.dimension(getter);
     	dashboard.groups[dimname] = dashboard.dim[dimname].group(Math.floor);  					
 		
 		var mydiv = $("<div/>").addClass("chart").attr("id", chartid);
