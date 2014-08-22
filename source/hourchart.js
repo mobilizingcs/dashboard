@@ -6,7 +6,7 @@
 		var dimname = item + "_hour"
 		var title = options.title || "Date"
 		var chartid = "hour-chart";
-		var na = options.na || undefined;
+		var na = options.na || "2014-01-01 00:00:00"; //must be date otherwise crash;
 		
 		//create dimension and group
 		var getter = oh.utils.gethour(item, na)
