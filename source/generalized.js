@@ -20,6 +20,9 @@ if ( campaign === "") {
 } else if ( /:trash$|trashintro|:demo_trash:/i.test(campaign) ) {
         console.log("loading existing config: trash");
         readConfig("trash");
+} else if ( /trash2$/i.test(campaign) ) {
+        console.log("loading existing config: trash2");
+        readConfig("trash2");        
 } else if ( /:snack/i.test(campaign) ) {
         console.log("loading existing config: snack");
         readConfig("snack");
