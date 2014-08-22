@@ -94,10 +94,12 @@
 		{
 			"title" : "Why",
 			"item" : "WhySnack"
+			"na" : "Missing"
 		},
 		{
 			"title" : "What",
-			"item" : "WhatSnack"		
+			"item" : "WhatSnack",
+			"na" : "Missing"
 		}
 	],
 	"dropdowns" : [

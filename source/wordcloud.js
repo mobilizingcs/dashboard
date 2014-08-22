@@ -12,9 +12,10 @@
 		var chartid = "wc-" + Math.random().toString(36).substring(7);
 		var resizable = options.resizable || false;
 		var maxwords = options.maxwords || 80;
+		var na = options.na || undefined; 
 		
 		//create dimension
-		var getter = oh.utils.get(variable);
+		var getter = oh.utils.get(variable, na);
     	var mydim = dashboard.dim[variable] = dashboard.data.dimension(getter);		
 		
 		//construct piece of dom
