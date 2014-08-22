@@ -2,15 +2,15 @@
 	"title" : "Litter Dashboard",
 	"data" : {
 		"filter" : "litter",
-		"url" : "{{ oh.getcsvurl }}"			
+		"url" : "{{ oh.getcsvurl }}"
 	},
-	"item_main" : "Littertype:label",	
+	"item_main" : "Littertype:label",
 	"photo" : {
 		"item" : "LitterImage",
 		"thumb" : "/app/image/read?client=dashboard&size=icon&id={{ LitterImage }}",
-		"image" : "/app/image/read?client=dashboard&id={{ LitterImage }}"	
-	},	
-	"modal": [ 
+		"image" : "/app/image/read?client=dashboard&id={{ LitterImage }}"
+	},
+	"modal": [
 		{
 			"title" : "What?",
 			"item" : "ObservationType:label"
@@ -38,27 +38,27 @@
 		{
 			"title" : "Receptacle nearby?",
 			"item" : "TrashReceptacle:label"
-		},		
+		},
 		{
 			"title" : "Receptacle full?",
 			"item" : "IsItFull:label"
-		},			
+		},
 		{
 			"title" : "Feeling?",
 			"item" : "FeelingLitter"
-		}	
+		}
 	],
 	"datecharts" : [
 		{
 			"title" : "Response Date",
 			"item" : "context:timestamp"
-		}	
+		}
 	],
 	"hourcharts" : [
 		{
 			"title" : "Response Time",
 			"item" : "context:timestamp"
-		}	
+		}
 	],
 	"piecharts" : [
 		{
@@ -86,15 +86,15 @@
 		{
 			"title" : "Where",
 			"item" : "Where:label"
-		},	
+		},
 		{
 			"title" : "Receptacle",
 			"item" : "TrashReceptacle:label"
 		},
 		{
 			"title" : "Receptacle Full?",
-			"item" : "IsItFull:label"		
-		}			
+			"item" : "IsItFull:label"
+		}
 	],
 	"barcharts" : [
 		{
@@ -102,7 +102,7 @@
 			"item" : "LitterQuantity",
 			"domain" : [0,3]
 		}
-	], 
+	],
 	"wordclouds" : [
 		{
 			"title" : "Feeling",
@@ -114,14 +114,15 @@
 			"title" : "User",
 			"item" : "user:id"
 		}
-	],	
+	],
 	"maps" : [
 		{
 			"item" : {
-				"lat" : "context:location:latitude", 
+				"lat" : "context:location:latitude",
 				"lng" : "context:location:longitude"
 			},
 			"center" : [34.0522222, -118.2427778],
+			"na" : [33.9,-118.5],
 			"zoom" : 9,
 			"clusteroptions" : {
 				"spiderfyOnMaxZoom": true,
@@ -141,7 +142,7 @@
 					"styleId" : 1
 				},
 				{
-					"title" : "Road", 
+					"title" : "Road",
 					"key" : "2d69a170ad5540f981628a272225958a",
 					"styleId" : 997
 				},
@@ -150,8 +151,8 @@
 					"key" : "2d69a170ad5540f981628a272225958a",
 					"styleId" : 22677,
 					"default" : true
-				}		
-			] 
+				}
+			]
 		}
 	]
 }

@@ -3,13 +3,13 @@
 	"data" : {
 		"url" : "data/snackdemo.csv"
 	},
-	"item_main" : "WhatSnack",	
+	"item_main" : "WhatSnack",
 	"photo" : {
 		"item" : "SnackImage",
 		"thumb" : "http://jeroenooms.github.io/lausd-data/snack/thumbs/{{ SnackImage }}.jpg",
-		"image" : "http://jeroenooms.github.io/lausd-data/snack/photos/{{ SnackImage }}.jpg" 		
+		"image" : "http://jeroenooms.github.io/lausd-data/snack/photos/{{ SnackImage }}.jpg"
 	},
-	"modal": [ 
+	"modal": [
 		{
 			"title" : "What?",
 			"item" : "WhatSnack"
@@ -37,19 +37,19 @@
 		{
 			"title" : "How Healthy? (1-5)",
 			"item" : "HealthyLevel"
-		}	
+		}
 	],
 	"datecharts" : [
 		{
 			"title" : "Response Date",
 			"item" : "context:timestamp"
-		}	
+		}
 	],
 	"hourcharts" : [
 		{
 			"title" : "Response Time",
 			"item" : "context:timestamp"
-		}	
+		}
 	],
 	"piecharts" : [
 		{
@@ -72,7 +72,7 @@
     		  	"Late night" : "night",
     		 	"Mid-afternoon" : "afternoon",
     			"Evening" : "evening"
-			}			
+			}
 		},
 		{
 			"title" : "Where",
@@ -88,7 +88,7 @@
 			"title" : "Healthy",
 			"item" : "HealthyLevel"
 		}
-	], 
+	],
 	"wordclouds" : [
 		{
 			"title" : "Why",
@@ -96,16 +96,17 @@
 		},
 		{
 			"title" : "What",
-			"item" : "WhatSnack"		
+			"item" : "WhatSnack"
 		}
 	],
 	"maps" : [
 		{
 			"item" : {
-				"lat" : "context:location:latitude", 
+				"lat" : "context:location:latitude",
 				"lng" : "context:location:longitude"
 			},
 			"center" : [34.0522222, -118.2427778],
+			"na" : [33.9,-118.5],
 			"zoom" : 9,
 			"clusteroptions" : {
 				"spiderfyOnMaxZoom": true,
@@ -126,7 +127,7 @@
 					"styleId" : 1
 				},
 				{
-					"title" : "Road", 
+					"title" : "Road",
 					"key" : "2d69a170ad5540f981628a272225958a",
 					"styleId" : 997
 				},
@@ -135,8 +136,8 @@
 					"key" : "2d69a170ad5540f981628a272225958a",
 					"styleId" : 22677,
 					"default" : true
-				}		
-			] 
+				}
+			]
 		}
 	]
 }

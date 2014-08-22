@@ -2,15 +2,15 @@
 	"title" : "Nutrition Dashboard",
 	"data" : {
 		"filter" : "algebra1|:math:",
-		"url" : "{{ oh.getcsvurl }}"			
+		"url" : "{{ oh.getcsvurl }}"
 	},
-	"item_main" : "nameofSnack",	
+	"item_main" : "nameofSnack",
 	"photo" : {
 		"item" : "SnackImage",
 		"thumb" : "/app/image/read?client=dashboard&size=icon&id={{ SnackImage }}",
-		"image" : "/app/image/read?client=dashboard&id={{ SnackImage }}"		
-	},	
-	"modal": [ 
+		"image" : "/app/image/read?client=dashboard&id={{ SnackImage }}"
+	},
+	"modal": [
 		{
 			"title" : "Name?",
 			"item" : "nameofSnack"
@@ -38,7 +38,7 @@
 		{
 			"title" : "Total Fat (gr/srv)?",
 			"item" : "factsTotalFat"
-		},		
+		},
 		{
 			"title" : "Sodium (mg/srv)?",
 			"item" : "factsSodium"
@@ -54,31 +54,31 @@
 		{
 			"title" : "Ingredients?",
 			"item" : "ingredients"
-		}				
+		}
 	],
 	"datecharts" : [
 		{
 			"title" : "Response Date",
 			"item" : "context:timestamp"
-		}	
+		}
 	],
 	"hourcharts" : [
 		{
 			"title" : "Response Time",
 			"item" : "context:timestamp"
-		}	
+		}
 	],
 	"piecharts" : [
 		{
 			"title" : "Salty or Sweet",
 			"item" : "saltyorsweet:label"
-		}		
+		}
 	],
 	"barcharts" : [
 		{
 			"title" : "Calories",
 			"item" : "factsCalories"
-		},	
+		},
 		{
 			"title" : "Sodium",
 			"item" : "factsSodium"
@@ -90,12 +90,12 @@
 		{
 			"title" : "Sugar",
 			"item" : "factsSugars"
-		},						
+		},
 		{
 			"title" : "Carbohydrates",
 			"item" : "factsTotalCarb"
-		}		
-	], 
+		}
+	],
 	"wordclouds" : [
 		{
 			"title" : "Ingredients",
@@ -107,14 +107,15 @@
 			"title" : "User",
 			"item" : "user:id"
 		}
-	],	
+	],
 	"maps" : [
 		{
 			"item" : {
-				"lat" : "context:location:latitude", 
+				"lat" : "context:location:latitude",
 				"lng" : "context:location:longitude"
 			},
 			"center" : [34.0522222, -118.2427778],
+			"na" : [33.9,-118.5],
 			"zoom" : 9,
 			"clusteroptions" : {
 				"spiderfyOnMaxZoom": true,
@@ -134,7 +135,7 @@
 					"styleId" : 1
 				},
 				{
-					"title" : "Road", 
+					"title" : "Road",
 					"key" : "2d69a170ad5540f981628a272225958a",
 					"styleId" : 997
 				},
@@ -143,8 +144,8 @@
 					"key" : "2d69a170ad5540f981628a272225958a",
 					"styleId" : 22677,
 					"default" : true
-				}		
-			] 
+				}
+			]
 		}
 	]
 }

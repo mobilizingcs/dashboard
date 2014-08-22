@@ -3,13 +3,13 @@
 	"data" : {
 		"url" : "data/mediademo.csv"
 	},
-	"item_main" : "Product",		
+	"item_main" : "Product",
 	"photo" : {
 		"item" : "AdPhoto",
 		"thumb" : "http://jeroenooms.github.io/lausd-data/media/thumbs/{{ AdPhoto }}.jpg",
 		"image" : "http://jeroenooms.github.io/lausd-data/media/photos/{{ AdPhoto }}.jpg"
-	},	
-	"modal": [ 
+	},
+	"modal": [
 		{
 			"title" : "Product?",
 			"item" : "Product"
@@ -33,19 +33,19 @@
 		{
 			"title" : "How does it make you feel?",
 			"item" : "Feeling"
-		}	
+		}
 	],
 	"datecharts" : [
 		{
 			"title" : "Response Date",
 			"item" : "context:timestamp"
-		}	
+		}
 	],
 	"hourcharts" : [
 		{
 			"title" : "Response Time",
 			"item" : "context:timestamp"
-		}	
+		}
 	],
 	"piecharts" : [
 		{
@@ -69,7 +69,7 @@
 			"title" : "Desired",
 			"item" : "DesiredLevel"
 		}
-	], 
+	],
 	"wordclouds" : [
 		{
 			"title" : "Product",
@@ -83,23 +83,24 @@
 			"item" : "TargetAudience",
 			"resizable" : false,
 			"maxwords" : 50,
-			"height" : 200		
+			"height" : 200
 		},
 		{
 			"title" : "Feeling",
 			"item" : "Feeling",
 			"resizable" : false,
 			"maxwords" : 50,
-			"height" : 200	
+			"height" : 200
 		}
 	],
 	"maps" : [
 		{
 			"item" : {
-				"lat" : "context:location:latitude", 
+				"lat" : "context:location:latitude",
 				"lng" : "context:location:longitude"
 			},
 			"center" : [34.0522222, -118.2427778],
+			"na" : [33.9,-118.5],
 			"zoom" : 9,
 			"clusteroptions" : {
 				"spiderfyOnMaxZoom": true,
@@ -120,7 +121,7 @@
 					"styleId" : 1
 				},
 				{
-					"title" : "Road", 
+					"title" : "Road",
 					"key" : "2d69a170ad5540f981628a272225958a",
 					"styleId" : 997
 				},
@@ -129,8 +130,8 @@
 					"key" : "2d69a170ad5540f981628a272225958a",
 					"styleId" : 22677,
 					"default" : true
-				}		
-			] 
+				}
+			]
 		}
 	]
 }

@@ -2,15 +2,15 @@
 	"title" : "Trash Dashboard",
 	"data" : {
 		"filter" : ":trash:|trashintro|:demo_trash:",
-		"url" : "{{ oh.getcsvurl }}"		
+		"url" : "{{ oh.getcsvurl }}"
 	},
-	"item_main" : "whatTrash",	
+	"item_main" : "whatTrash",
 	"photo" : {
 		"item" : "photo",
 		"thumb" : "/app/image/read?client=dashboard&size=icon&id={{ photo }}",
-		"image" : "/app/image/read?client=dashboard&id={{ photo }}"		
+		"image" : "/app/image/read?client=dashboard&id={{ photo }}"
 	},
-	"modal": [ 
+	"modal": [
 		{
 			"title" : "What?",
 			"item" : "whatTrash"
@@ -29,20 +29,20 @@
 		},
 		{
 			"title" : "Recycle Bin Count",
-			"item" : "howManyRecycle" 
-		} 
+			"item" : "howManyRecycle"
+		}
 	],
 	"datecharts" : [
 		{
 			"title" : "Date",
 			"item" : "context:timestamp"
-		}	
+		}
 	],
 	"hourcharts" : [
 		{
 			"title" : "Hour of Day",
 			"item" : "context:timestamp"
-		}	
+		}
 	],
 	"piecharts" : [
 				{
@@ -72,16 +72,16 @@
 				{
 						"title" : "# Trash Bins",
 						"domain" : [0, 10],
-						"binwidth" : 1,						
+						"binwidth" : 1,
 						"item" : "numberTrashBins"
 				},
 				{
 						"title" : "# Compost Bins",
 						"domain" : [0, 10],
-						"binwidth" : 1,						
+						"binwidth" : 1,
 						"item" : "numberCompostBins"
 				}
-	], 
+	],
 	"wordclouds" : [
 		{
 			"title" : "What Trash?",
@@ -98,10 +98,11 @@
 	"maps" : [
 		{
 			"item" : {
-				"lat" : "context:location:latitude", 
+				"lat" : "context:location:latitude",
 				"lng" : "context:location:longitude"
 			},
 			"center" : [34.0522222, -118.2427778],
+			"na" : [33.9,-118.5],
 			"zoom" : 9,
 			"clusteroptions" : {
 				"spiderfyOnMaxZoom": true,
@@ -121,7 +122,7 @@
 					"styleId" : 1
 				},
 				{
-					"title" : "Road", 
+					"title" : "Road",
 					"key" : "2d69a170ad5540f981628a272225958a",
 					"styleId" : 997
 				},
@@ -130,8 +131,8 @@
 					"key" : "2d69a170ad5540f981628a272225958a",
 					"styleId" : 22677,
 					"default" : true
-				}		
-			] 
+				}
+			]
 		}
 	]
 }

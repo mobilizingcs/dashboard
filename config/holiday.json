@@ -2,15 +2,15 @@
 	"title" : "Holiday Decoration",
 	"data" : {
 		"filter" : "holidays",
-		"url" : "{{ oh.getcsvurl }}"			
+		"url" : "{{ oh.getcsvurl }}"
 	},
-	"item_main" : "Description",		
+	"item_main" : "Description",
 	"photo" : {
 		"item" : "DecorationImage",
 		"thumb" : "/app/image/read?client=dashboard&size=icon&id={{ DecorationImage }}",
 		"image" : "/app/image/read?client=dashboard&id={{ DecorationImage }}"
-	},	
-	"modal": [ 
+	},
+	"modal": [
 		{
 			"title" : "Holiday",
 			"item" : "Holiday:label"
@@ -48,13 +48,13 @@
 		{
 			"title" : "Response Date",
 			"item" : "context:timestamp"
-		}	
+		}
 	],
 	"hourcharts" : [
 		{
 			"title" : "Response Time",
 			"item" : "context:timestamp"
-		}	
+		}
 	],
 	"piecharts" : [
 		{
@@ -72,7 +72,7 @@
 				"Pico y Magnolia" : "Pico / Magnolia",
 				"Vecindario Politi" : "V. Politi"
 			}
-		},		
+		},
 		{
 			"title" : "Unit Type",
 			"item" : "UnitType:label",
@@ -88,7 +88,7 @@
 			"item" : "NumberOfDecorations",
 			"domain" : [0,4]
 		}
-	], 
+	],
 	"wordclouds" : [
 		{
 			"title" : "Description",
@@ -96,7 +96,7 @@
 		},
 		{
 			"title" : "Address",
-			"item" : "Address"		
+			"item" : "Address"
 		}
 	],
 	"dropdowns" : [
@@ -104,14 +104,15 @@
 			"title" : "User",
 			"item" : "user:id"
 		}
-	],	
+	],
 	"maps" : [
 		{
 			"item" : {
-				"lat" : "context:location:latitude", 
+				"lat" : "context:location:latitude",
 				"lng" : "context:location:longitude"
 			},
 			"center" : [34.0522222, -118.2427778],
+			"na" : [33.9,-118.5],
 			"zoom" : 9,
 			"clusteroptions" : {
 				"spiderfyOnMaxZoom": true,
@@ -131,7 +132,7 @@
 					"styleId" : 1
 				},
 				{
-					"title" : "Road", 
+					"title" : "Road",
 					"key" : "2d69a170ad5540f981628a272225958a",
 					"styleId" : 997
 				},
@@ -140,8 +141,8 @@
 					"key" : "2d69a170ad5540f981628a272225958a",
 					"styleId" : 22677,
 					"default" : true
-				}		
-			] 
+				}
+			]
 		}
 	]
 }
