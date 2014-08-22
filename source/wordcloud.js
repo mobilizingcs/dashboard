@@ -31,11 +31,12 @@
 			filter(this.value);
 			dc.redrawAll()
 		});
-		$("<a/>").addClass("reset").addClass("hide").appendTo(titlediv).on("click", function(){setvalue()})
+		var resetlink = $("<a/>").attr("href", "#").text("(reset)").addClass("reset").addClass("hide").appendTo(titlediv).on("click", function(){setvalue();})
 		
 		var chartdiv = $("<div/>").addClass("chart").attr("id", chartid).appendTo(mydiv);
 		
 		function setvalue(newval){
+			newval ? resetlink.show() : resetlink.hide();
 			filterinput.val(newval || "");
 			filterinput.trigger("keyup");			
 		}
