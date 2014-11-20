@@ -68,7 +68,7 @@ function generateConfig(campaign){
         configObject.data.url = "{{ oh.getcsvurl }}";
         configObject.datecharts = { "title": "Response Date", "item": "context:timestamp" };
         configObject.hourcharts = { "title": "Response Time", "item": "context:timestamp" };
-
+        configObject.dropdowns =  { "title" : "User", "item" : "user:id" };
         configObject.maps = [{
                         "item" : {
                                 "lat" : "context:location:latitude",
