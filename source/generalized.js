@@ -22,7 +22,10 @@ if ( campaign === "") {
         readConfig("trash");
 } else if ( /trash2$/i.test(campaign) ) {
         console.log("loading existing config: trash2");
-        readConfig("trash2");        
+        readConfig("trash2");
+} else if ( /:snackforstats/i.test(campaign) ) {
+	console.log("I'm generating a config now...");
+        generateConfig(campaign);       
 } else if ( /:snack/i.test(campaign) ) {
         console.log("loading existing config: snack");
         readConfig("snack");
