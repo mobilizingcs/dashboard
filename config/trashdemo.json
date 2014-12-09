@@ -1,0 +1,137 @@
+{
+	"title" : "Trash Dashboard",
+	"data" : {
+		"url" : "data/trashdemo.csv"
+	},
+	"item_main" : "whatTrash",
+	"photo" : {
+		"item" : "photo",
+		"thumb" : "http://jeroenooms.github.io/lausd-data/trash/thumbs/{{ photo }}.jpg",
+		"image" : "http://jeroenooms.github.io/lausd-data/trash/photos/{{ photo }}.jpg"
+	},
+	"modal": [
+		{
+			"title" : "What?",
+			"item" : "whatTrash"
+		},
+		{
+			"title" : "What type?",
+			"item" : "type:label"
+		},
+		{
+			"title" : "What activity?",
+			"item" : "activity:label"
+		},
+		{
+			"title" : "Where did you put it?",
+			"item" : "receptacle:label"
+		},
+		{
+			"title" : "Recycle Bin Count",
+			"item" : "howManyRecycle"
+		}
+	],
+	"datecharts" : [
+		{
+			"title" : "Date",
+			"item" : "context:timestamp"
+		}
+	],
+	"hourcharts" : [
+		{
+			"title" : "Hour of Day",
+			"item" : "context:timestamp"
+		}
+	],
+	"piecharts" : [
+				{
+						"title" : "What type?",
+						"item" : "type:label"
+				},
+                                {
+                                                "title" : "Where?",
+                                                "item" : "where:label"
+                                },
+				{
+						"title" : "What activity?",
+						"item" : "activity:label"
+				},
+				{
+						"title" : "What bin type?",
+						"item" : "receptacle:label"
+				}
+	],
+	"barcharts" : [
+				{
+						"title" : "# Recycle Bins",
+						"domain" : [0 ,10],
+						"binwidth" : 1,
+						"item" : "numberRecycleBins"
+				},
+				{
+						"title" : "# Trash Bins",
+						"domain" : [0, 10],
+						"binwidth" : 1,
+						"item" : "numberTrashBins"
+				},
+				{
+						"title" : "# Compost Bins",
+						"domain" : [0, 10],
+						"binwidth" : 1,
+						"item" : "numberCompostBins"
+				}
+	],
+	"wordclouds" : [
+		{
+			"title" : "What Trash?",
+			"binwidth" : 20,
+			"item" : "whatTrash"
+		}
+	],
+	"dropdowns" : [
+		{
+			"title" : "User",
+			"item" : "user:id"
+		}
+	],
+	"maps" : [
+		{
+			"item" : {
+				"lat" : "context:location:latitude",
+				"lng" : "context:location:longitude"
+			},
+			"center" : [34.0522222, -118.2427778],
+			"na" : [33.9,-118.5],
+			"zoom" : 9,
+			"clusteroptions" : {
+				"spiderfyOnMaxZoom": true,
+				"showCoverageOnHover": true,
+				"zoomToBoundsOnClick": true
+			},
+			"geojson" : [
+				{
+					"title" : "neighborhoods",
+					"url" : "lib/geojson/la_simplified.min.json"
+				}
+			],
+			"tilelayers": [
+				{
+					"title" : "Standard",
+					"key" : "2d69a170ad5540f981628a272225958a",
+					"styleId" : 1
+				},
+				{
+					"title" : "Road",
+					"key" : "2d69a170ad5540f981628a272225958a",
+					"styleId" : 997
+				},
+				{
+					"title" : "Minimal",
+					"key" : "2d69a170ad5540f981628a272225958a",
+					"styleId" : 22677,
+					"default" : true
+				}
+			]
+		}
+	]
+}

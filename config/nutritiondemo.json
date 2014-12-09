@@ -1,0 +1,150 @@
+{
+	"title" : "Nutrition Dashboard",
+	"data" : {
+		"url" : "data/nutritiondemo.csv"
+	},
+	"item_main" : "nameofSnack",
+	"photo" : {
+		"item" : "SnackImage",
+		"thumb" : "http://jeroenooms.github.io/lausd-data/nutrition/thumbs/{{ SnackImage }}.jpg",
+		"image" : "http://jeroenooms.github.io/lausd-data/nutrition/photos/{{ SnackImage }}.jpg"
+	},
+	"modal": [
+		{
+			"title" : "Name?",
+			"item" : "nameofSnack"
+		},
+		{
+			"title" : "Salty or Sweet?",
+			"item" : "saltyorsweet:label"
+		},
+		{
+			"title" : "Healthy?",
+			"item" : "healthyLevel"
+		},
+		{
+			"title" : "Serving Size?",
+			"item" : "servingSize"
+		},
+		{
+			"title" : "How many Servings?",
+			"item" : "howmanyServings"
+		},
+		{
+			"title" : "Calories per Serving??",
+			"item" : "factsCalories"
+		},
+		{
+			"title" : "Total Fat (gr/srv)?",
+			"item" : "factsTotalFat"
+		},
+		{
+			"title" : "Sodium (mg/srv)?",
+			"item" : "factsSodium"
+		},
+		{
+			"title" : "Carbohydrates (gr/srv)?",
+			"item" : "factsTotalCarb"
+		},
+		{
+			"title" : "Sugar (gr/srv)?",
+			"item" : "factsSugars"
+		},
+		{
+			"title" : "Ingredients?",
+			"item" : "ingredients"
+		}
+	],
+	"datecharts" : [
+		{
+			"title" : "Response Date",
+			"item" : "context:timestamp"
+		}
+	],
+	"hourcharts" : [
+		{
+			"title" : "Response Time",
+			"item" : "context:timestamp"
+		}
+	],
+	"piecharts" : [
+		{
+			"title" : "Salty or Sweet",
+			"item" : "saltyorsweet:label"
+		}
+	],
+	"barcharts" : [
+		{
+			"title" : "Calories",
+			"item" : "factsCalories"
+		},
+		{
+			"title" : "Sodium",
+			"item" : "factsSodium"
+		},
+		{
+			"title" : "Total Fat",
+			"item" : "factsTotalFat"
+		},
+		{
+			"title" : "Sugar",
+			"item" : "factsSugars"
+		},
+		{
+			"title" : "Carbohydrates",
+			"item" : "factsTotalCarb"
+		}
+	],
+	"wordclouds" : [
+		{
+			"title" : "Ingredients",
+			"item" : "ingredients"
+		}
+	],
+	"dropdowns" : [
+		{
+			"title" : "User",
+			"item" : "user:id"
+		}
+	],
+	"maps" : [
+		{
+			"item" : {
+				"lat" : "context:location:latitude",
+				"lng" : "context:location:longitude"
+			},
+			"center" : [34.0522222, -118.2427778],
+			"na" : [33.9,-118.5],
+			"zoom" : 9,
+			"clusteroptions" : {
+				"spiderfyOnMaxZoom": true,
+				"showCoverageOnHover": true,
+				"zoomToBoundsOnClick": true
+			},
+			"geojson" : [
+				{
+					"title" : "neighborhoods",
+					"url" : "lib/geojson/la_simplified.min.json"
+				}
+			],
+			"tilelayers": [
+				{
+					"title" : "Standard",
+					"key" : "2d69a170ad5540f981628a272225958a",
+					"styleId" : 1
+				},
+				{
+					"title" : "Road",
+					"key" : "2d69a170ad5540f981628a272225958a",
+					"styleId" : 997
+				},
+				{
+					"title" : "Minimal",
+					"key" : "2d69a170ad5540f981628a272225958a",
+					"styleId" : 22677,
+					"default" : true
+				}
+			]
+		}
+	]
+}
