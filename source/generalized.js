@@ -14,6 +14,12 @@ if ( campaign === "") {
 } else if ( /:public:media/i.test(campaign) ){
         console.log("loading public config: mediademo");
         readConfig("mediademo");
+} else if ( /:public:nutrition/i.test(campaign) ){
+        console.log("loading public config: nutritiondemo");
+        readConfig("nutritiondemo");
+} else if ( /:public:trash/i.test(campaign) ){
+        console.log("loading public config: trashdemo");
+        readConfig("trashdemo");
 } else if ( /advertisement|:media/i.test(campaign) ){
         console.log("loading existing config: media");
         readConfig("media");
