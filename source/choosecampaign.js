@@ -21,7 +21,7 @@ if ( /\/publicdashboard/i.test(window.location.pathname) ){
                                 "urn" : "urn:public:trash",
                                 "name" : "Trash",
                                 "count" : 2667
-                        },
+                        }
         }
 
         $("#filter").hide();
