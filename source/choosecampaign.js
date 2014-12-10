@@ -11,7 +11,17 @@ if ( /\/publicdashboard/i.test(window.location.pathname) ){
                                 "urn" : "urn:public:media",
                                 "name" : "Media",
                                 "count" : 1025
-                        }
+                        },
+                        "nutrition" : {
+                                "urn" : "urn:public:nutrition",
+                                "name" : "Nutrition",
+                                "count" : 1443
+                        },
+                        "trash" : {
+                                "urn" : "urn:public:trash",
+                                "name" : "Trash",
+                                "count" : 2667
+                        },
         }
 
         $("#filter").hide();
