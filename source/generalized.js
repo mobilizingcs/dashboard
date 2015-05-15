@@ -1,6 +1,6 @@
 function generalized(next){
 //find out what campaign we are using
-campaign = window.location.hash.substr(1);
+var campaign = oh.utils.state()[0]
 console.log(campaign);
 configObject={};
 
