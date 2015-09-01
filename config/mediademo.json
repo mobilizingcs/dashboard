@@ -6,8 +6,8 @@
 	"item_main" : "Product",
 	"photo" : {
 		"item" : "AdPhoto",
-		"thumb" : "http://jeroenooms.github.io/lausd-data/media/thumbs/{{ AdPhoto }}.jpg",
-		"image" : "http://jeroenooms.github.io/lausd-data/media/photos/{{ AdPhoto }}.jpg"
+		"thumb" : "/navbar/demo/data/media/thumbs/{{ AdPhoto }}.jpg",
+		"image" : "/navbar/demo/data/media/photos/{{ AdPhoto }}.jpg"
 	},
 	"modal": [
 		{

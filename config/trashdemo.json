@@ -6,8 +6,8 @@
 	"item_main" : "whatTrash",
 	"photo" : {
 		"item" : "photo",
-		"thumb" : "http://jeroenooms.github.io/lausd-data/trash/thumbs/{{ photo }}.jpg",
-		"image" : "http://jeroenooms.github.io/lausd-data/trash/photos/{{ photo }}.jpg"
+		"thumb" : "/navbar/demo/data/trash/thumbs/{{ photo }}.jpg",
+		"image" : "/navbar/demo/data/trash/photos/{{ photo }}.jpg"
 	},
 	"modal": [
 		{

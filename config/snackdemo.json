@@ -6,8 +6,8 @@
 	"item_main" : "WhatSnack",
 	"photo" : {
 		"item" : "SnackImage",
-		"thumb" : "http://jeroenooms.github.io/lausd-data/snack/thumbs/{{ SnackImage }}.jpg",
-		"image" : "http://jeroenooms.github.io/lausd-data/snack/photos/{{ SnackImage }}.jpg"
+		"thumb" : "/navbar/demo/data/snack/thumbs/{{ SnackImage }}.jpg",
+		"image" : "/navbar/demo/data/snack/photos/{{ SnackImage }}.jpg"
 	},
 	"modal": [
 		{
