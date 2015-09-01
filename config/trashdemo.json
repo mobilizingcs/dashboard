@@ -44,42 +44,42 @@
 		}
 	],
 	"piecharts" : [
-				{
-						"title" : "What type?",
-						"item" : "type:label"
-				},
-                                {
-                                                "title" : "Where?",
-                                                "item" : "where:label"
-                                },
-				{
-						"title" : "What activity?",
-						"item" : "activity:label"
-				},
-				{
-						"title" : "What bin type?",
-						"item" : "receptacle:label"
-				}
+		{
+			"title" : "What type?",
+			"item" : "type:label"
+		},
+		{
+			"title" : "Where?",
+			"item" : "where:label"
+		},
+		{
+			"title" : "What activity?",
+			"item" : "activity:label"
+		},
+		{
+			"title" : "What bin type?",
+			"item" : "receptacle:label"
+		}
 	],
 	"barcharts" : [
-				{
-						"title" : "# Recycle Bins",
-						"domain" : [0 ,10],
-						"binwidth" : 1,
-						"item" : "numberRecycleBins"
-				},
-				{
-						"title" : "# Trash Bins",
-						"domain" : [0, 10],
-						"binwidth" : 1,
-						"item" : "numberTrashBins"
-				},
-				{
-						"title" : "# Compost Bins",
-						"domain" : [0, 10],
-						"binwidth" : 1,
-						"item" : "numberCompostBins"
-				}
+		{
+			"title" : "# Recycle Bins",
+			"domain" : [0 ,10],
+			"binwidth" : 1,
+			"item" : "numberRecycleBins"
+		},
+		{
+			"title" : "# Trash Bins",
+			"domain" : [0, 10],
+			"binwidth" : 1,
+			"item" : "numberTrashBins"
+		},
+		{
+			"title" : "# Compost Bins",
+			"domain" : [0, 10],
+			"binwidth" : 1,
+			"item" : "numberCompostBins"
+		}
 	],
 	"wordclouds" : [
 		{
