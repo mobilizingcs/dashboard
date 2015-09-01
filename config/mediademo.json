@@ -1,7 +1,7 @@
 {
 	"title" : "Advertisement Dashboard",
 	"data" : {
-		"url" : "data/mediademo.csv"
+		"url" : "/navbar/demo/data/media/mediademo.csv"
 	},
 	"item_main" : "Product",
 	"photo" : {
