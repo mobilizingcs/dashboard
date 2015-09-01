@@ -7,7 +7,7 @@ function generalized(next) {
     //test for known campaign types and loads config files
     if (campaign === "") {
         //check for empty campaign and redirect to pick one
-        window.location = "choosecampaign.html";
+        window.location = "/#campaign_mgmt/#dashboard";
     } else if (/:public:snack/i.test(campaign)) {
         console.log("loading public config: snackdemo");
         readConfig("snackdemo");

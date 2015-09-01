@@ -381,7 +381,7 @@ oh.getcsvurl = function(){
 			//from here we can assume we are authenticated to ohmage.
 			if($.inArray(campaign_urn, campaigns) < 0){
 				alert("No such campaign: " + campaign_urn); 
-				window.location = "choosecampaign.html?filter=" + filter;
+				window.location = '/#campaign_mgmt/#dashboard';
 			}
 		});
 	});
