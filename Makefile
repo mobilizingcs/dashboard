@@ -5,7 +5,7 @@
 
 DATE=$(shell date +%I:%M%p)
 CAMPAIGN=snack
-OUT=/var/www/html/$(CAMPAIGN)
+OUT=/Library/WebServer/Documents/navbar/dashboard
 
 all: www
 
