@@ -139,7 +139,7 @@ function generalized(next) {
                 }
 
                 configObject.modal.push({
-                    "item": id,
+                    "item": (promptType == "single_choice") ? id + ":label" : id,
                     "title": displayLabel
                 });
                 //generate some items based on prompts
