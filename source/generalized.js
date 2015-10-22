@@ -38,6 +38,9 @@ function generalized(next) {
     } else if (/:litter/i.test(campaign)) {
         console.log("loading existing config: litter");
         readConfig("litter");
+    } else if (/:nutrition_v2/i.test(campaign)) {
+        console.log("loading existing config: nutrition_v2");
+        readConfig("nutrition_v2");
     } else if (/:nutrition/i.test(campaign)) {
         console.log("loading existing config: nutrition");
         readConfig("nutrition");
