@@ -67,7 +67,7 @@
 		},
 		{
 			"title" : "Why snack?",
-			"item" : "whySnack"
+			"item" : "whySnack:label"
 		}
 	],
 	"barcharts" : [
