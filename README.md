@@ -55,6 +55,7 @@ Below the steps to update the data of demo campaigns:
  8. Update the `photo.thumb` and `photo.img` properties in the config file to point to the image server.
  9. (optional) add random values to the longitude and latitude columns for privacy.
 
-
-
+Licensing
+--------------
+The code in this respository is open-source and licensed under the Apache License, version 2.0. The full text of the license may be found at this link: http://www.apache.org/licenses/LICENSE-2.0.
 
