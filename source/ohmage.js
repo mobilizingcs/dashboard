@@ -134,11 +134,20 @@ oh.call = function(path, data, datafun){
 	
 	//default parameter
 	data.client = "dashboard"
+
+  var headers = {};
+
+  // add bearer token for keycloak auth
+  if ($.cookie("KEYCLOAK_TOKEN")) {
+    $.removeCookie("auth_token");
+    headers = {"Authorization": "Bearer "+$.cookie("KEYCLOAK_TOKEN")};
+  }
 		
 	var myrequest = $.ajax({
 		type: "POST",
 		url : "/app" + path,
 		data: data,
+    headers: headers,
 		dataType: "text",
 		xhrFields: {
 			withCredentials: true
@@ -184,10 +193,19 @@ oh.call.xml = function(path, data, datafun){
         //default parameter
         data.client = "dashboard"
 
+        var headers = {};
+
+        // add bearer token for keycloak auth
+        if ($.cookie("KEYCLOAK_TOKEN")) {
+          $.removeCookie("auth_token");
+          headers = {"Authorization": "Bearer "+$.cookie("KEYCLOAK_TOKEN")};
+        }
+
         var myrequest = $.ajax({
                 type: "POST",
                 url : "/app" + path,
                 data: data,
+                headers: headers,
                 dataType: "text",
                 xhrFields: {
                         withCredentials: true
