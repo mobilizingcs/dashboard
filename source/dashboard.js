@@ -22,10 +22,19 @@ $(document).ready(function() {
 		
 		//unescape html escaped mustache output
 		var csvpath = $('<textarea />').html(csvpath).val();
+
+    var headers = {};
+
+    // add bearer token for keycloak auth
+    if ($.cookie("KEYCLOAK_TOKEN")) {
+      $.removeCookie("auth_token");
+      headers = {"Authorization": "Bearer "+$.cookie("KEYCLOAK_TOKEN")};
+    }
 		
 		//try to download data.
 		var myrequest = $.ajax({
 			type: "GET",
+			headers: headers,
 			url : csvpath 
 		}).error(function(){
 			alert("Failed to download data from:\n" + csvpath)
