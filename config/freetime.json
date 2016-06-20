@@ -1,0 +1,165 @@
+{
+  "title": "FreeTime Dashboard",
+  "data": {
+    "filter": "freetime",
+    "url": "{{ oh.getcsvurl }}"
+  },
+  "datecharts": {
+    "title": "Response Date",
+    "item": "context:timestamp"
+  },
+  "hourcharts": {
+    "title": "Response Time",
+    "item": "context:timestamp"
+  },
+  "dropdowns": {
+    "title": "User",
+    "item": "user:id"
+  },
+  "maps": [
+    {
+      "item": {
+        "lat": "context:location:latitude",
+        "lng": "context:location:longitude"
+      },
+      "center": [
+        34.0522222,
+        -118.2427778
+      ],
+      "na": [
+        33.9,
+        -118.5
+      ],
+      "zoom": 9,
+      "clusteroptions": {
+        "spiderfyOnMaxZoom": true,
+        "showCoverageOnHover": true,
+        "zoomToBoundsOnClick": true
+      },
+      "geojson": [
+        {
+          "title": "neighborhoods",
+          "url": "lib/geojson/la_simplified.min.json"
+        }
+      ],
+      "tilelayers": [
+        {
+          "title": "Standard",
+          "key": "2d69a170ad5540f981628a272225958a",
+          "styleId": 1,
+          "attribution": false,
+          "maxZoom": 18
+        },
+        {
+          "title": "Road",
+          "key": "2d69a170ad5540f981628a272225958a",
+          "styleId": 997,
+          "attribution": false,
+          "maxZoom": 18
+        },
+        {
+          "title": "Minimal",
+          "key": "2d69a170ad5540f981628a272225958a",
+          "styleId": 22677,
+          "default": true,
+          "attribution": false,
+          "maxZoom": 18
+        }
+      ]
+    }
+  ],
+  "piecharts": [
+    {
+      "item": "type:label",
+      "title": "type"
+    },
+    {
+      "item": "where:label",
+      "title": "where"
+    },
+    {
+      "item": "time_day:label",
+      "title": "time_day"
+    },
+    {
+      "item": "who:label",
+      "title": "who"
+    },
+    {
+      "item": "mood:label",
+      "title": "mood"
+    }
+  ],
+  "wordclouds": [
+    {
+      "item": "what",
+      "title": "what"
+    },
+    {
+      "item": "why",
+      "title": "why"
+    }
+  ],
+  "barcharts": [
+    {
+      "item": "number_with",
+      "title": "number_with"
+    },
+    {
+      "item": "length",
+      "title": "length"
+    }
+  ],
+  "modal": [
+    {
+      "item": "what",
+      "title": "what"
+    },
+    {
+      "item": "type:label",
+      "title": "type"
+    },
+    {
+      "item": "why",
+      "title": "why"
+    },
+    {
+      "item": "where:label",
+      "title": "where"
+    },
+    {
+      "item": "time_day:label",
+      "title": "time_day"
+    },
+    {
+      "item": "who:label",
+      "title": "who"
+    },
+    {
+      "item": "number_with",
+      "title": "number_with"
+    },
+    {
+      "item": "length",
+      "title": "length"
+    },
+    {
+      "item": "money",
+      "title": "money"
+    },
+    {
+      "item": "mood:label",
+      "title": "mood"
+    },
+    {
+      "item": "photo",
+      "title": "photo"
+    }
+  ],
+  "item_main": "what",
+  "photo": {
+    "item": "photo",
+    "thumb": "/app/image/read?client=dashboard&size=icon&id={{photo}}",
+    "image": "/app/image/read?client=dashboard&id={{photo}}"
+  }
+}

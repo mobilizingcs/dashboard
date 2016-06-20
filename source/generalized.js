@@ -44,6 +44,9 @@ function generalized(next) {
     } else if (/:nutrition/i.test(campaign)) {
         console.log("loading existing config: nutrition");
         readConfig("nutrition");
+    } else if (/:freetime/i.test(campaign)) {
+        console.log("loading existing config: freetime");
+        readConfig("freetime");
     } else {
         console.log("I'm generating a config now...");
         generateConfig(campaign);
