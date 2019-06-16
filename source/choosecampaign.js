@@ -20,7 +20,7 @@ if ( /\/publicdashboard/i.test(window.location.pathname) ){
                         "trash" : {
                                 "urn" : "urn:public:trash",
                                 "name" : "Trash",
-                                "count" : 2667
+                                "count" : 2631
                         }
         }
 
