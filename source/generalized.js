@@ -131,7 +131,7 @@ function generalized(next) {
             var countPie = 0;
             var limitPhoto = 1;
             var countPhoto = 0;
-            var limitClouds = 2
+            var limitClouds = 4;
             var countClouds = 0;
             var limitBar = 2;
             var countBar = 0;
